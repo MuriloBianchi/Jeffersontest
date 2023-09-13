@@ -34,6 +34,11 @@
                     <button class="btn btn-outline-primary" id="Despesas" onclick="Listar(this)">Despesa</button>
                 </li>
                 
+                
+                <li class="nav-item">
+                    <button class="btn btn-outline-primary" id="Despesas" onclick="Listar(this)">Despesa</button>
+                </li>
+                
             </ul>
         </div>
     </nav>
