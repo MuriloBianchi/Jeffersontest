@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.curso.controller.locador;
+package br.com.curso.controller.locatario;
 
 import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.LocadorDAO;
-import br.com.curso.model.Locador;
+import br.com.curso.dao.LocatarioDAO;
+import br.com.curso.model.Locatario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "LocadorCadastrar", urlPatterns = {"/LocadorCadastrar"})
-public class LocadorCadastrar extends HttpServlet {
+@WebServlet(name = "LocatarioCadastrar", urlPatterns = {"/LocatarioCadastrar"})
+public class LocatarioCadastrar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,28 +34,28 @@ public class LocadorCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
-        int idLocador = Integer.parseInt(request.getParameter("idlocador"));
+        int idLocatario = Integer.parseInt(request.getParameter("idlocatario"));
         String nome = request.getParameter("nome");
         String cpfCnpj = request.getParameter("cpfcnpj");
         String mensagem = null;
         
-        Locador oLocador = new Locador();
-        oLocador.setIdLocador(idLocador);
-        oLocador.setNome(nome);
-        oLocador.setCpfCnpj(cpfCnpj);
+        Locatario oLocatario = new Locatario();
+        oLocatario.setIdLocatario(idLocatario);
+        oLocatario.setNome(nome);
+        oLocatario.setCpfCnpj(cpfCnpj);
         
         try{
-            GenericDAO dao = new LocadorDAO();
-            if (dao.cadastrar(oLocador)){
-                mensagem = "Locador cadastrado com sucesso!";
+            GenericDAO dao = new LocatarioDAO();
+            if (dao.cadastrar(oLocatario)){
+                mensagem = "Locatario cadastrado com sucesso!";
             }else{
-                mensagem = "Problemas ao cadastrar Locador.Verifique os dados informados e tente novamente!";
+                mensagem = "Problemas ao cadastrar Locatario.Verifique os dados informados e tente novamente!";
                 }
             request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("LocadorListar");
+            response.sendRedirect("LocatarioListar");
             
         }catch(Exception ex){
-            System.out.println("Problemas no Servlet ao cadastrar Locador! Erro" + ex.getMessage());
+            System.out.println("Problemas no Servlet ao cadastrar Locatario! Erro" + ex.getMessage());
             
         }
     }

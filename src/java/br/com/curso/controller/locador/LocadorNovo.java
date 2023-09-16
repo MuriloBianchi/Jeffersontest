@@ -4,8 +4,6 @@
  */
 package br.com.curso.controller.locador;
 
-import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.LocadorDAO;
 import br.com.curso.model.Locador;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "LocadorCadastrar", urlPatterns = {"/LocadorCadastrar"})
-public class LocadorCadastrar extends HttpServlet {
+@WebServlet(name = "LocadorNovo", urlPatterns = {"/LocadorNovo"})
+public class LocadorNovo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,30 +32,12 @@ public class LocadorCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
-        int idLocador = Integer.parseInt(request.getParameter("idlocador"));
-        String nome = request.getParameter("nome");
-        String cpfCnpj = request.getParameter("cpfcnpj");
-        String mensagem = null;
-        
+      
         Locador oLocador = new Locador();
-        oLocador.setIdLocador(idLocador);
-        oLocador.setNome(nome);
-        oLocador.setCpfCnpj(cpfCnpj);
         
-        try{
-            GenericDAO dao = new LocadorDAO();
-            if (dao.cadastrar(oLocador)){
-                mensagem = "Locador cadastrado com sucesso!";
-            }else{
-                mensagem = "Problemas ao cadastrar Locador.Verifique os dados informados e tente novamente!";
-                }
-            request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("LocadorListar");
-            
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet ao cadastrar Locador! Erro" + ex.getMessage());
-            
-        }
+        request.setAttribute("locador", oLocador);
+        
+        request.getRequestDispatcher("/cadastros/locador/locadorCadastrar.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
