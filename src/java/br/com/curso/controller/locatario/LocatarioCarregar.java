@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.curso.controller.locador;
+package br.com.curso.controller.locatario;
 
 import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.LocadorDAO;
-import br.com.curso.model.Locador;
+import br.com.curso.dao.LocatarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "LocadorCadastrar", urlPatterns = {"/LocadorCadastrar"})
-public class LocadorCadastrar extends HttpServlet {
+@WebServlet(name = "LocatarioCarregar", urlPatterns = {"/LocatarioCarregar"})
+public class LocatarioCarregar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,30 +32,19 @@ public class LocadorCadastrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
-        int idLocador = Integer.parseInt(request.getParameter("idlocador"));
-        String nome = request.getParameter("nome");
-        String cpfCnpj = request.getParameter("cpfcnpj");
-        String mensagem = null;
-        
-        Locador oLocador = new Locador();
-        oLocador.setIdLocador(idLocador);
-        oLocador.setNome(nome);
-        oLocador.setCpfCnpj(cpfCnpj);
-        
-        try{
-            GenericDAO dao = new LocadorDAO();
-            if (dao.cadastrar(oLocador)){
-                mensagem = "Locador cadastrado com sucesso!";
-            }else{
-                mensagem = "Problemas ao cadastrar Locador.Verifique os dados informados e tente novamente!";
-                }
-            request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("LocadorListar");
-            
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet ao cadastrar Locador! Erro" + ex.getMessage());
-            
+          response.setContentType("text/html;charset=iso-8859-1");
+       int idLocatario = Integer.parseInt(request.getParameter("idLocatario"));
+       
+       try{
+           GenericDAO dao = new LocatarioDAO();
+           request.setAttribute("locatario",dao.carregar(idLocatario));
+           request.getRequestDispatcher("cadastros/locatario/locatarioCadastrar.jsp").forward(request, response);
+           
+       } catch(Exception e){
+           System.out.println("Problemas na servelet carregar Locatario! Erro: "+ e.getMessage());
+           e.printStackTrace();
+           
+       
         }
     }
 
