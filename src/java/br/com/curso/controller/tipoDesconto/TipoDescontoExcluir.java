@@ -32,22 +32,23 @@ public class TipoDescontoExcluir extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           response.setContentType("text/html;charset=iso-8859-1");
-       int idTipoDesconto = Integer.parseInt(request.getParameter("idTipoDesconto"));
-       String mensagem = null;
-       try{
-           GenericDAO dao =new TipoDescontoDAO();
-           if (dao.excluir(idTipoDesconto)){
-               mensagem ="TipoDesconto excluido com sucesso";
-        } else{
-               mensagem = "Problemas ao excluir TipoDesconto";
-           }
-           request.setAttribute("mensagem", mensagem);
-           response.sendRedirect("TipoDescontoListar");
-    } catch (Exception ex){
-           System.out.println("Problemas no servelet ao excluir TipoDesconto! Erro:"+ ex.getMessage());
-           ex.printStackTrace();
-    }
+       response.setContentType("text/html;charset=iso-8859-1");
+        int idTipoDesconto = Integer.parseInt(request.getParameter("idTipoDesconto"));
+        String mensagem = null;
+        try {
+            GenericDAO dao = new TipoDescontoDAO();
+            if(dao.excluir(idTipoDesconto)){
+                
+                response.getWriter().write("1");
+                
+            } else{
+                response.getWriter().write("0");
+            }
+           
+        }catch (Exception e){
+            System.out.println("Problemas na Servelet Excluir TipoDesconto! Erro: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
 

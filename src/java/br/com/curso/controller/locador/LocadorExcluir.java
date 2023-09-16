@@ -33,21 +33,22 @@ public class LocadorExcluir extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
-       int idLocador = Integer.parseInt(request.getParameter("idLocador"));
-       String mensagem = null;
-       try{
-           GenericDAO dao =new LocadorDAO();
-           if (dao.excluir(idLocador)){
-               mensagem ="Locador excluido com sucesso";
-        } else{
-               mensagem = "Problemas ao excluir Locador";
-           }
-           request.setAttribute("mensagem", mensagem);
-           response.sendRedirect("LocadorListar");
-    } catch (Exception ex){
-           System.out.println("Problemas no servelet ao excluir Locador! Erro:"+ ex.getMessage());
-           ex.printStackTrace();
-    }
+        int idLocador = Integer.parseInt(request.getParameter("idLocador"));
+        String mensagem = null;
+        try {
+            GenericDAO dao = new LocadorDAO();
+            if(dao.excluir(idLocador)){
+                
+                response.getWriter().write("1");
+                
+            } else{
+                response.getWriter().write("0");
+            }
+           
+        }catch (Exception e){
+            System.out.println("Problemas na Servelet Excluir Locador! Erro: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

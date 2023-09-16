@@ -33,29 +33,24 @@ public class TipoDescontoCadastrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=iso-8859-1");
-        int idTipoDesconto = Integer.parseInt(request.getParameter("idTipoDesconto"));
-        String descricao = request.getParameter("descricao");
-       
+        response.setContentType("text/html;charset=iso-8859-1");
         String mensagem = null;
-        
-        TipoDesconto oTipoDesconto = new TipoDesconto();
-        oTipoDesconto.setIdTipoDesconto(idTipoDesconto);
-        oTipoDesconto.setDescricao(descricao);
-         
-        try{
-            GenericDAO dao = new TipoDescontoDAO();
-            if (dao.cadastrar(oTipoDesconto)){
-                mensagem = "TipoDescontocadastrado com sucesso!";
-            }else{
-                mensagem = "Problemas ao cadastrar TipoDesconto.Verifique os dados informados e tente novamente!";
+        try {
+                TipoDesconto oTipoDesconto = new TipoDesconto();
+                oTipoDesconto.setIdTipoDesconto(Integer.parseInt(request.getParameter("idtipoDesconto")));
+                oTipoDesconto.setDescricao(request.getParameter("descricao"));
+              
+               TipoDescontoDAO dao = new TipoDescontoDAO();
+                
+                if(dao.cadastrar(oTipoDesconto)){
+                    response.getWriter().write("1");
+                    
+                } else{
+                    response.getWriter().write("0");
                 }
-            request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("TipoDescontoListar");
-            
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet ao cadastrar Locatario! Erro" + ex.getMessage());
-            
+        } catch (Exception e){
+            System.out.println("Problemas no servelet Cadastrar TipoDesconto!Erro:" + e.getMessage()); 
+            e.printStackTrace();
         }
     }
 
