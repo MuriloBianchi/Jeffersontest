@@ -7,7 +7,6 @@ package br.com.curso.dao;
 import br.com.curso.model.Imovel;
 import br.com.curso.model.Locador;
 import br.com.curso.model.TipoImovel;
-import static br.com.curso.utils.Conversao.data2String;
 import static br.com.curso.utils.Conversao.valorDinheiro;
 import br.com.curso.utils.SingleConnection;
 import java.sql.Connection;
@@ -188,4 +187,5 @@ public class ImovelDAO implements GenericDAO {
         return resultado;
        
 }
+        
 }  
