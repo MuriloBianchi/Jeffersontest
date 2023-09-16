@@ -144,7 +144,7 @@ public class LocadorDAO implements GenericDAO{
         ResultSet rs = null;
         List<Object> resultado = new ArrayList<>();
         Locador oLocador = null;
-        String sql = "select * from  Locador";
+        String sql = "select * from  locador order by idLocador";
          try{
              stmt = conexao.prepareStatement(sql);
              rs = stmt.executeQuery();
