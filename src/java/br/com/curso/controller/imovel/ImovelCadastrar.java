@@ -2,11 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.curso.controller.locador;
+package br.com.curso.controller.imovel;
 
-import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.LocadorDAO;
+import br.com.curso.dao.ImovelDAO;
+import br.com.curso.model.Imovel;
 import br.com.curso.model.Locador;
+import br.com.curso.model.TipoImovel;
+import br.com.curso.utils.Conversao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "LocadorCadastrar", urlPatterns = {"/LocadorCadastrar"})
-public class LocadorCadastrar extends HttpServlet {
+@WebServlet(name = "ImovelCadastrar", urlPatterns = {"/ImovelCadastrar"})
+public class ImovelCadastrar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +35,31 @@ public class LocadorCadastrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
+         response.setContentType("text/html;charset=iso-8859-1");
         String mensagem = null;
+        int idTipoImovel = Integer.parseInt(request.getParameter("idtipoimovel"));
+        int idLocador = Integer.parseInt(request.getParameter("idlocador"));
         try {
-                Locador oLocador = new Locador();
-                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocador")));
-                oLocador.setNome(request.getParameter("nome"));
-                oLocador.setCpfCnpj(request.getParameter("cpfCnpj"));
+                Imovel oImovel = new Imovel();
+                oImovel.setIdImovel(Integer.parseInt(request.getParameter("idimovel")));
+                oImovel.setDescricao(request.getParameter("descricao"));
+                oImovel.setRua(request.getParameter("rua"));
+                oImovel.setNumero(request.getParameter("numero"));
+                oImovel.setBairro(request.getParameter("bairro"));
+                oImovel.setValorAluguel(Conversao.valorDinheiro(request.getParameter("valoraluguel")));
+                oImovel.setTaxaAdministracao(Conversao.valorDinheiro(request.getParameter("taxaadministracao")));
+                oImovel.setTipoImovel(new TipoImovel(idTipoImovel,""));
+                oImovel.setLocador(new Locador (idLocador,"",""));
+                ImovelDAO dao = new ImovelDAO();
                 
-                LocadorDAO dao = new LocadorDAO();
-                
-                if(dao.cadastrar(oLocador)){
+                if(dao.cadastrar(oImovel)){
                     response.getWriter().write("1");
                     
                 } else{
                     response.getWriter().write("0");
                 }
         } catch (Exception e){
-            System.out.println("Problemas no servelet Cadastrar Locador!Erro:" + e.getMessage()); 
+            System.out.println("Problemas no servelet Cadastrar Imovel!Erro:" + e.getMessage()); 
             e.printStackTrace();
         }
     }

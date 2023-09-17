@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.curso.controller.locador;
+package br.com.curso.controller.tipoDesconto;
 
 import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.LocadorDAO;
-import br.com.curso.model.Locador;
+import br.com.curso.dao.TipoDescontoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "LocadorCadastrar", urlPatterns = {"/LocadorCadastrar"})
-public class LocadorCadastrar extends HttpServlet {
+@WebServlet(name = "TipoDescontoExcluir", urlPatterns = {"/TipoDescontoExcluir"})
+public class TipoDescontoExcluir extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,27 +32,25 @@ public class LocadorCadastrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
+       response.setContentType("text/html;charset=iso-8859-1");
+        int idTipoDesconto = Integer.parseInt(request.getParameter("idTipoDesconto"));
         String mensagem = null;
         try {
-                Locador oLocador = new Locador();
-                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocador")));
-                oLocador.setNome(request.getParameter("nome"));
-                oLocador.setCpfCnpj(request.getParameter("cpfCnpj"));
+            GenericDAO dao = new TipoDescontoDAO();
+            if(dao.excluir(idTipoDesconto)){
                 
-                LocadorDAO dao = new LocadorDAO();
+                response.getWriter().write("1");
                 
-                if(dao.cadastrar(oLocador)){
-                    response.getWriter().write("1");
-                    
-                } else{
-                    response.getWriter().write("0");
-                }
-        } catch (Exception e){
-            System.out.println("Problemas no servelet Cadastrar Locador!Erro:" + e.getMessage()); 
+            } else{
+                response.getWriter().write("0");
+            }
+           
+        }catch (Exception e){
+            System.out.println("Problemas na Servelet Excluir TipoDesconto! Erro: " + e.getMessage());
             e.printStackTrace();
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

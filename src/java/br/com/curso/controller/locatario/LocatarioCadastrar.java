@@ -33,30 +33,24 @@ public class LocatarioCadastrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
-        int idLocatario = Integer.parseInt(request.getParameter("idlocatario"));
-        String nome = request.getParameter("nome");
-        String cpfCnpj = request.getParameter("cpfcnpj");
+           response.setContentType("text/html;charset=iso-8859-1");
         String mensagem = null;
-        
-        Locatario oLocatario = new Locatario();
-        oLocatario.setIdLocatario(idLocatario);
-        oLocatario.setNome(nome);
-        oLocatario.setCpfCnpj(cpfCnpj);
-        
-        try{
-            GenericDAO dao = new LocatarioDAO();
-            if (dao.cadastrar(oLocatario)){
-                mensagem = "Locatario cadastrado com sucesso!";
-            }else{
-                mensagem = "Problemas ao cadastrar Locatario.Verifique os dados informados e tente novamente!";
+        try {
+                Locatario oLocatario = new Locatario();
+                oLocatario.setIdLocatario(Integer.parseInt(request.getParameter("idlocatario")));
+                oLocatario.setNome(request.getParameter("nome"));
+                oLocatario.setCpfCnpj(request.getParameter("cpfcnpj"));
+                LocatarioDAO dao = new LocatarioDAO();
+                
+                if(dao.cadastrar(oLocatario)){
+                    response.getWriter().write("1");
+                    
+                } else{
+                    response.getWriter().write("0");
                 }
-            request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("LocatarioListar");
-            
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet ao cadastrar Locatario! Erro" + ex.getMessage());
-            
+        } catch (Exception e){
+            System.out.println("Problemas no servelet Cadastrar Locatario!Erro:" + e.getMessage()); 
+            e.printStackTrace();
         }
     }
 

@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.curso.controller.locador;
+package br.com.curso.controller.imovel;
 
 import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.LocadorDAO;
-import br.com.curso.model.Locador;
+import br.com.curso.dao.ImovelDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "LocadorCadastrar", urlPatterns = {"/LocadorCadastrar"})
-public class LocadorCadastrar extends HttpServlet {
+@WebServlet(name = "ImovelCarregar", urlPatterns = {"/ImovelCarregar"})
+public class ImovelCarregar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,24 +32,14 @@ public class LocadorCadastrar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
-        String mensagem = null;
-        try {
-                Locador oLocador = new Locador();
-                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocador")));
-                oLocador.setNome(request.getParameter("nome"));
-                oLocador.setCpfCnpj(request.getParameter("cpfCnpj"));
-                
-                LocadorDAO dao = new LocadorDAO();
-                
-                if(dao.cadastrar(oLocador)){
-                    response.getWriter().write("1");
-                    
-                } else{
-                    response.getWriter().write("0");
-                }
+         response.setContentType("text/html;charset=iso-8859-1");
+        int idImovel = Integer.parseInt(request.getParameter("idImovel"));      
+        try { 
+            GenericDAO dao = new ImovelDAO();
+            request.setAttribute("imovel", dao.carregar(idImovel));
+            request.getRequestDispatcher("cadastros/imovel/imovelCadastrar.jsp").forward(request, response);
         } catch (Exception e){
-            System.out.println("Problemas no servelet Cadastrar Locador!Erro:" + e.getMessage()); 
+            System.out.println("Problemas na Servelet carregar imovel! Erro: " + e.getMessage());
             e.printStackTrace();
         }
     }
