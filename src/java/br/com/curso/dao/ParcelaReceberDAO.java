@@ -147,7 +147,7 @@ public class ParcelaReceberDAO implements GenericDAO {
         ResultSet rs = null;
         List<Object> resultado = new ArrayList<>();
         ParcelaReceber oParcelaReceber = null;
-        String sql = "Select DATAVENCIMENTO, DATARECEBIMENTO, VALORPARCELA, VALORRECEBIDO, VALORJUROSMULTA, SITUACAO from PARCELARECEBER";
+        String sql = "Select NROPARCELA, DATAVENCIMENTO, DATARECEBIMENTO, VALORPARCELA, VALORRECEBIDO, VALORJUROSMULTA, SITUACAO from PARCELARECEBER";
         try{
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
