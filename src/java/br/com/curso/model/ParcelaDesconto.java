@@ -9,6 +9,7 @@ public class ParcelaDesconto {
     private Date dataLancamento;
     private double valorDesconto;
     private String descricao;
+    private TipoDesconto idTipoDesconto;
 
     public ParcelaDesconto() {
         idParcelaDesconto = 0;
@@ -16,14 +17,16 @@ public class ParcelaDesconto {
         dataLancamento = Conversao.dataAtual();
         valorDesconto = 0;
         descricao = "";
+        idTipoDesconto = new TipoDesconto();
     }
 
-    public ParcelaDesconto(int idParcelaDesconto, int nroParcela, Date dataLancamento, double valorDesconto, String descricao) {
+    public ParcelaDesconto(int idParcelaDesconto, int nroParcela, Date dataLancamento, double valorDesconto, String descricao, TipoDesconto idTipoDesconto) {
         this.idParcelaDesconto = idParcelaDesconto;
         this.nroParcela = nroParcela;
         this.dataLancamento = dataLancamento;
         this.valorDesconto = valorDesconto;
         this.descricao = descricao;
+        this.idTipoDesconto = idTipoDesconto;
     }
 
     public int getIdParcelaDesconto() {
@@ -65,6 +68,16 @@ public class ParcelaDesconto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public TipoDesconto getIdTipoDesconto() {
+        return idTipoDesconto;
+    }
+
+    public void setIdTipoDesconto(TipoDesconto idTipoDesconto) {
+        this.idTipoDesconto = idTipoDesconto;
+    }
+
+    
     
     
     

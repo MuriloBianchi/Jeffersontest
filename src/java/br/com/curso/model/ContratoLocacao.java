@@ -18,6 +18,13 @@ public class ContratoLocacao {
     private double valorJurosMultaRecebido;
     private double valorJurosMultaPago;
     private double saldoContrato;
+    private Imovel idImovel;
+    private Locador idLocador;
+    private Locatario idLocatario;
+    private ParcelaReceber nroParcela;
+    private ParcelaPagar idParcelaPagar;
+    private ParcelaDesconto idParcelaDesconto;
+    
 
     public ContratoLocacao() {
         idContrato = 0;
@@ -34,9 +41,15 @@ public class ContratoLocacao {
         valorJurosMultaRecebido = 0;
         valorJurosMultaPago = 0;
         saldoContrato = 0;
+        idImovel = new Imovel();
+        idLocador = new Locador();
+        idLocatario = new Locatario();
+        nroParcela = new ParcelaReceber();
+        idParcelaPagar = new ParcelaPagar();
+        idParcelaDesconto = new ParcelaDesconto();
     }
 
-    public ContratoLocacao(int idContrato, Date dataContrato, Date dataInicio, Date dataFinal, int mesesContrato, int diaRecebimento, int diaPagamento, double valorTotalContrato, double valorRecebido, double valorDescontos, double valorPago, double valorJurosMultaRecebido, double valorJurosMultaPago, double saldoContrato) {
+    public ContratoLocacao(int idContrato, Date dataContrato, Date dataInicio, Date dataFinal, int mesesContrato, int diaRecebimento, int diaPagamento, double valorTotalContrato, double valorRecebido, double valorDescontos, double valorPago, double valorJurosMultaRecebido, double valorJurosMultaPago, double saldoContrato, Imovel idImovel, Locador idLocador, Locatario idLocatario ,ParcelaReceber nroParcela, ParcelaPagar idParcelaPagar, ParcelaDesconto idParcelaDesconto) {
         this.idContrato = idContrato;
         this.dataContrato = dataContrato;
         this.dataInicio = dataInicio;
@@ -51,6 +64,12 @@ public class ContratoLocacao {
         this.valorJurosMultaRecebido = valorJurosMultaRecebido;
         this.valorJurosMultaPago = valorJurosMultaPago;
         this.saldoContrato = saldoContrato;
+        this.idImovel = idImovel;
+        this.idLocador = idLocador;
+        this.idLocatario = idLocatario;
+        this.nroParcela = nroParcela;
+        this.idParcelaPagar = idParcelaPagar;
+        this.idParcelaDesconto = idParcelaDesconto;
     }
 
     public int getIdContrato() {
@@ -164,5 +183,55 @@ public class ContratoLocacao {
     public void setSaldoContrato(double saldoContrato) {
         this.saldoContrato = saldoContrato;
     }
+
+    public Imovel getIdImovel() {
+        return idImovel;
+    }
+
+    public void setIdImovel(Imovel idImovel) {
+        this.idImovel = idImovel;
+    }
+
+    public Locador getIdLocador() {
+        return idLocador;
+    }
+
+    public void setIdLocador(Locador idLocador) {
+        this.idLocador = idLocador;
+    }
+
+    public Locatario getIdLocatario() {
+        return idLocatario;
+    }
+
+    public void setIdLocatario(Locatario idLocatario) {
+        this.idLocatario = idLocatario;
+    }
+
+    public ParcelaReceber getNroParcela() {
+        return nroParcela;
+    }
+
+    public void setNroParcela(ParcelaReceber nroParcela) {
+        this.nroParcela = nroParcela;
+    }
+
+    public ParcelaPagar getIdParcelaPagar() {
+        return idParcelaPagar;
+    }
+
+    public void setIdParcelaPagar(ParcelaPagar idParcelaPagar) {
+        this.idParcelaPagar = idParcelaPagar;
+    }
+
+    public ParcelaDesconto getIdParcelaDesconto() {
+        return idParcelaDesconto;
+    }
+
+    public void setIdParcelaDesconto(ParcelaDesconto idParcelaDesconto) {
+        this.idParcelaDesconto = idParcelaDesconto;
+    }
+
+    
     
 }
