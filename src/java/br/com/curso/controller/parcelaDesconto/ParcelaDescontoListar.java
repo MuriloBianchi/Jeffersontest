@@ -4,6 +4,8 @@
  */
 package br.com.curso.controller.parcelaDesconto;
 
+import br.com.curso.dao.GenericDAO;
+import br.com.curso.dao.ParcelaDescontoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,11 +34,11 @@ public class ParcelaDescontoListar extends HttpServlet {
             throws ServletException, IOException {
        response.setContentType("text/html;charset=iso-8859-1");
         try {
-            GenericDAO dao = new ParcelaCarregarDAO();
-            request.setAttribute("parcelasCarregar", dao.listar());
-            request.getRequestDispatcher("/cadastros/parcelaCarregar/parcelaCarregar.jsp").forward(request, response);
+            GenericDAO dao = new ParcelaDescontoDAO();
+            request.setAttribute("parcelasDesconto", dao.listar());
+            request.getRequestDispatcher("/cadastros/parcelaDesconto/parcelaDesconto.jsp").forward(request, response);
         }catch (Exception ex){
-            System.out.println("Problemas no Servelet ao Listar ParcelaCarregar!Erro: "+ ex.getMessage());
+            System.out.println("Problemas no Servelet ao Listar ParcelaDesconto! Erro: "+ ex.getMessage());
             ex.printStackTrace();
         }
     }

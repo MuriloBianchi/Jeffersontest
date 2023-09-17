@@ -4,6 +4,8 @@
  */
 package br.com.curso.controller.parcelaPagar;
 
+import br.com.curso.dao.GenericDAO;
+import br.com.curso.dao.ParcelaPagarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

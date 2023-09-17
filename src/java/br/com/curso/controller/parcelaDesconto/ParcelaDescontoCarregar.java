@@ -5,6 +5,7 @@
 package br.com.curso.controller.parcelaDesconto;
 
 import br.com.curso.dao.GenericDAO;
+import br.com.curso.dao.ParcelaDescontoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
