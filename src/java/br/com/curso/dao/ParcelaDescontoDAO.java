@@ -2,6 +2,7 @@
 package br.com.curso.dao;
 
 import br.com.curso.model.ParcelaDesconto;
+import br.com.curso.model.TipoDesconto;
 import br.com.curso.utils.SingleConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,13 +35,14 @@ public class ParcelaDescontoDAO implements GenericDAO {
     public Boolean inserir(Object objeto) {
         ParcelaDesconto oParcelaDesconto = (ParcelaDesconto) objeto;
         PreparedStatement stmt = null;
-        String sql = "Insert into PARCELADESCONTO (NROPARCELA, DATALANCAMENTO, VALORDESCONTO, DESCRICAO) values (?,?,?,?)";
+        String sql = "Insert into PARCELADESCONTO (NROPARCELA, DATALANCAMENTO, VALORDESCONTO, DESCRICAO, IDTIPODESCONTO) values (?,?,?,?,?)";
         try{
             stmt = conexao.prepareCall(sql);
             stmt.setInt(1, oParcelaDesconto.getNroParcela());
             stmt.setDate(2, new java.sql.Date(oParcelaDesconto.getDataLancamento().getTime()));
             stmt.setDouble(3, oParcelaDesconto.getValorDesconto());
             stmt.setString(4, oParcelaDesconto.getDescricao());
+            stmt.setInt(5, oParcelaDesconto.getIdTipoDesconto().getIdTipoDesconto());
             stmt.execute();
             conexao.commit();
             return true;
@@ -61,14 +63,15 @@ public class ParcelaDescontoDAO implements GenericDAO {
     public Boolean alterar(Object objeto) {
         ParcelaDesconto oParcelaDesconto = (ParcelaDesconto) objeto;
         PreparedStatement stmt = null;
-        String sql = "Update PARCELADESCONTO set NROPARCELA = ?, DATALANCAMENTO = ?, VALORDESCONTO = ?, DESCRICAO = ? where IDPARCELADESCONTO = ?";
+        String sql = "Update PARCELADESCONTO set NROPARCELA = ?, DATALANCAMENTO = ?, VALORDESCONTO = ?, DESCRICAO = ?, IDTIPODESCONTO = ? where IDPARCELADESCONTO = ?";
         try{
             stmt = conexao.prepareCall(sql);
             stmt.setInt(1, oParcelaDesconto.getNroParcela());
             stmt.setDate(2, new java.sql.Date(oParcelaDesconto.getDataLancamento().getTime()));
             stmt.setDouble(3, oParcelaDesconto.getValorDesconto());
             stmt.setString(4, oParcelaDesconto.getDescricao());
-            stmt.setInt(5, oParcelaDesconto.getIdParcelaDesconto());
+            stmt.setInt(5, oParcelaDesconto.getIdTipoDesconto().getIdTipoDesconto());
+            stmt.setInt(6, oParcelaDesconto.getIdParcelaDesconto());
             stmt.execute();
             conexao.commit();
             return true;
@@ -115,7 +118,7 @@ public class ParcelaDescontoDAO implements GenericDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ParcelaDesconto oParcelaDesconto = null;
-        String sql = "Select DATALANCAMENTO, VALORDESCONTO, NROPARCELA, DESCRICAO from PARCELADESCONTO where IDPARCELADESCONTO = ?";
+        String sql = "Select DATALANCAMENTO, VALORDESCONTO, NROPARCELA, DESCRICAO, IDTIPODESCONTO from PARCELADESCONTO where IDPARCELADESCONTO = ?";
         try{
             stmt = conexao.prepareCall(sql);
             stmt.setInt(1, idParcelaDesconto);
@@ -126,6 +129,9 @@ public class ParcelaDescontoDAO implements GenericDAO {
                 oParcelaDesconto.setValorDesconto(rs.getDouble("VALORDESCONTO"));
                 oParcelaDesconto.setNroParcela(rs.getInt("NROPARCELA"));
                 oParcelaDesconto.setDescricao(rs.getString("DESCRICAO"));
+                
+                TipoDescontoDAO oTipoDescontoDAO = new TipoDescontoDAO();
+                oParcelaDesconto.setIdTipoDesconto((TipoDesconto) oTipoDescontoDAO.carregar(rs.getInt("IDTIPODESCONTO")));
             }
         }catch (Exception e){
             System.out.println("Problemas ao carregar Parceal Desconto! Erro: " + e.getMessage());
@@ -151,6 +157,16 @@ public class ParcelaDescontoDAO implements GenericDAO {
                 oParcelaDesconto.setValorDesconto(rs.getDouble("VALORDESCONTO"));
                 oParcelaDesconto.setNroParcela(rs.getInt("NROPARCELA"));
                 oParcelaDesconto.setDescricao(rs.getString("DESCRICAO"));
+                
+                TipoDescontoDAO oTipoDescontoDAO = null;
+                try{
+                    oTipoDescontoDAO = new TipoDescontoDAO();
+                }catch(Exception ex){
+                    System.out.println("Erro ao Carregar Tipo Desconto! " + ex.getMessage());
+                    ex.printStackTrace();
+                }
+                oParcelaDesconto.setIdTipoDesconto((TipoDesconto) oTipoDescontoDAO.carregar(rs.getInt("IDTIPODESCONTO")));
+                
             }
         }catch (Exception e){
             System.out.println("Problemas ao carregar Parceal Desconto! Erro: " + e.getMessage());
