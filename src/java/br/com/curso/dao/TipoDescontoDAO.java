@@ -113,7 +113,7 @@ public class TipoDescontoDAO implements GenericDAO {
 
     @Override
     public Object carregar(int numero) {
-         int idTipoDesconto = numero;
+        int idTipoDesconto = numero;
         PreparedStatement stmt = null; 
         ResultSet rs = null;
         TipoDesconto oTipoDesconto = null;

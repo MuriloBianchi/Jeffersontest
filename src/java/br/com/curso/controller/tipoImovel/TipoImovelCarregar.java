@@ -21,7 +21,7 @@ public class TipoImovelCarregar extends HttpServlet {
             try{
                 GenericDAO dao = new TipoImovelDAO();
                 request.setAttribute("tipoImovel", dao.carregar(idTipoImovel));
-                request.getRequestDispatcher("/cadastros/tipoImovel/tipoImovelCadastrar.jsp").forward(request, response);
+                request.getRequestDispatcher("/cadastros/tipoImovel/tipoImovel.jsp").forward(request, response);
             }catch (Exception ex){
                 System.out.println("Problemas na Servelet Carregar Tipo Imovel! Erro: " + ex.getMessage());
                 ex.printStackTrace();

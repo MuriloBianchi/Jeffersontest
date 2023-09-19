@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>web/cadastros/tipoImovel/tipoImovel.jsp</url>
+            <bookmark id="2">
+                <name/>
+                <line>128</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/cadastros/tipoImovel/tipoImovel.jsp</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/src/java/br/com/curso/controller/tipoImovel/TipoImovelCarregar.java</file>
             <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/header.jsp</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/style.css</file>
             <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/menu.jsp</file>
-            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/index.jsp</file>
-            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/cadastros/tipoimovel/tipoimovel.jsp</file>
         </group>
-=======
-<<<<<<< HEAD
-        <group>
-            <file>file:/C:/Users/kelvi/OneDrive/Documentos/ProvaLAB/src/java/br/com/curso/dao/LocatarioDAO.java</file>
-            <file>file:/C:/Users/kelvi/OneDrive/Documentos/ProvaLAB/src/java/br/com/curso/dao/LocadorDAO.java</file>
-            <file>file:/C:/Users/kelvi/OneDrive/Documentos/ProvaLAB/src/java/br/com/curso/dao/TipoDescontoDAO.java</file>
-        </group>
-=======
-        <group/>
->>>>>>> 790f189c26617589169ac7d75214f5fbebf15a8e
->>>>>>> e0d70e3b29c08377b80f3c7198c3e5a4dfa41617
     </open-files>
 </project-private>
