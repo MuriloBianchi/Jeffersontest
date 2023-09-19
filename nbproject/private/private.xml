@@ -11,6 +11,7 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/cadastros/tipoImovel/tipoImovel.jsp</file>
             <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/src/java/br/com/curso/controller/tipoImovel/TipoImovelCarregar.java</file>
@@ -18,5 +19,19 @@
             <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/style.css</file>
             <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/menu.jsp</file>
         </group>
+=======
+<<<<<<< HEAD
+        <group/>
+=======
+        <group>
+<<<<<<< HEAD
+            <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/dao/ContratoLocacaoDAO.java</file>
+            <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/model/ContratoLocacao.java</file>
+=======
+            <file>file:/C:/Users/kelvi/OneDrive/Documentos/ProvaLAB/src/java/br/com/curso/controller/contratoLocacao/ContratoLocacaoCarregar.java</file>
+>>>>>>> 854caffa74d55c379f937c259dbd4da6ac0d8e8c
+        </group>
+>>>>>>> ca8678f1dfb8de85a69e71560064b17a0eb5cf7b
+>>>>>>> 64e4da6abd59caf7d6ba1d72429d3b8fcb04e5ea
     </open-files>
 </project-private>

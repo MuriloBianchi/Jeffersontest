@@ -34,29 +34,24 @@ public class LocadorCadastrar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=iso-8859-1");
-        int idLocador = Integer.parseInt(request.getParameter("idlocador"));
-        String nome = request.getParameter("nome");
-        String cpfCnpj = request.getParameter("cpfcnpj");
         String mensagem = null;
-        
-        Locador oLocador = new Locador();
-        oLocador.setIdLocador(idLocador);
-        oLocador.setNome(nome);
-        oLocador.setCpfCnpj(cpfCnpj);
-        
-        try{
-            GenericDAO dao = new LocadorDAO();
-            if (dao.cadastrar(oLocador)){
-                mensagem = "Locador cadastrado com sucesso!";
-            }else{
-                mensagem = "Problemas ao cadastrar Locador.Verifique os dados informados e tente novamente!";
+        try {
+                Locador oLocador = new Locador();
+                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocador")));
+                oLocador.setNome(request.getParameter("nome"));
+                oLocador.setCpfCnpj(request.getParameter("cpfCnpj"));
+                
+                LocadorDAO dao = new LocadorDAO();
+                
+                if(dao.cadastrar(oLocador)){
+                    response.getWriter().write("1");
+                    
+                } else{
+                    response.getWriter().write("0");
                 }
-            request.setAttribute("mensagem", mensagem);
-            response.sendRedirect("LocadorListar");
-            
-        }catch(Exception ex){
-            System.out.println("Problemas no Servlet ao cadastrar Locador! Erro" + ex.getMessage());
-            
+        } catch (Exception e){
+            System.out.println("Problemas no servelet Cadastrar Locador!Erro:" + e.getMessage()); 
+            e.printStackTrace();
         }
     }
 

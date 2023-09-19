@@ -31,13 +31,15 @@ public class LocatarioNovo extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=iso-8859-1");
-      
-        Locatario oLocatario = new Locatario();
-        
-        request.setAttribute("locatario", oLocatario);
-        
-        request.getRequestDispatcher("/cadastros/locatario/locatarioCadastrar.jsp").forward(request, response);
+     response.setContentType("text/html;charset=iso-8859-1");
+        try{
+            Locatario oLocatario = new Locatario();
+            request.setAttribute("locatario", oLocatario);
+            request.getRequestDispatcher("cadastros/locatario/locatarioCadastrar.jsp").forward(request, response);
+           } catch (Exception e) {
+               System.out.println("Problema na Servelet carregar locatario! Erro: " + e.getMessage());
+               e.printStackTrace();
+           }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
