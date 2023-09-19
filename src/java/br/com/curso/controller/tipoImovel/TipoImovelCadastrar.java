@@ -22,7 +22,7 @@ public class TipoImovelCadastrar extends HttpServlet {
         response.setContentType("text/html;charset=iso-8859-1");
         try{
             TipoImovel oTipoImovel = new TipoImovel();
-            oTipoImovel.setIdTipoImovel(Integer.parseInt(request.getParameter("idTipoImovel")));
+            oTipoImovel.setIdTipoImovel(Integer.parseInt(request.getParameter("idtipoimovel")));
             oTipoImovel.setDescricao(request.getParameter("descricao"));
             TipoImovelDAO dao = new TipoImovelDAO();
             

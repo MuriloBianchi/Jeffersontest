@@ -11,7 +11,7 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault" >
         <ul class="navbar-nav mr-auto ">
           <li class="nav-item active">
-            <a class="nav-link" href="#" style="--color: #FF3333"><span>Home </span><span class="sr-only">(atual)</span><i></i></a>
+            <a class="nav-link" href="#" id="Home" style="--color: #FF3333"><span>Home </span><span class="sr-only">(atual)</span><i></i></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="TipoImvovel" onclick="Listar(this)"
@@ -48,12 +48,16 @@
         console.log("aqui");
         switch(botao.id){
             
+            case "Home":
+                window.location.href = "./index.jsp";
+            break;
+            
             case "TipoImvovel":
-                window.location.href = "./cadastros/tipoimovel/tipoimovel.jsp";
+                window.location.href = "TipoImovelListar";
             break;
 
             case "Tipo Desconto":
-                window.location.href = "./cadastros/tipodesconto/tipodesconto.jsp";
+                window.location.href = "./cadastros/tipoDesconto/tipoDesconto.jsp";
             break;
 
             case "Locador":
