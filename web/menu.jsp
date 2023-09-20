@@ -57,11 +57,11 @@
             break;
 
             case "Tipo Desconto":
-                window.location.href = "./cadastros/tipoDesconto/tipoDesconto.jsp";
+                window.location.href = "TipoDescontoListar";
             break;
 
             case "Locador":
-                window.location.href = "./cadastros/locador/locador.jsp";
+                window.location.href = "LocadorListar";
             break;
 
             case "Locatário":
@@ -69,7 +69,7 @@
             break;
 
             case "Imovel":
-                window.location.href = "./cadastros/imovel/imovel.jsp";
+                window.location.href = "ImovelListar";
             break;
             
             default:

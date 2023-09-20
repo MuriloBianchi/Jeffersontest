@@ -140,7 +140,7 @@ public class LocadorDAO implements GenericDAO{
 
     @Override
     public List<Object> listar() {
-        PreparedStatement stmt = null;
+    PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Object> resultado = new ArrayList<>();
         Locador oLocador = null;
@@ -152,7 +152,7 @@ public class LocadorDAO implements GenericDAO{
                 oLocador = new Locador();
                 oLocador.setIdLocador(rs.getInt("idLocador"));
                 oLocador.setNome(rs.getString("nome"));
-                 oLocador.setCpfCnpj(rs.getString("cpfCnpj"));
+                oLocador.setCpfCnpj(rs.getString("cpfCnpj"));
                 resultado.add(oLocador);               
              }
          }catch(Exception e){

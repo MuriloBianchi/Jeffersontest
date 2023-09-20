@@ -163,7 +163,7 @@ public class ImovelDAO implements GenericDAO {
     
     @Override
     public List<Object> listar() {
-               List<Object> resultado = new ArrayList<>();
+        List<Object> resultado = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         String sql = "Select * from cidade order by idimovel";
