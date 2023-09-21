@@ -161,31 +161,22 @@ public class TipoDescontoDAO implements GenericDAO {
     }
     
     
-    public String listarJSON(){
+    public String CarregarJSON(int numero){
         String strJson="";
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Object> resultado = new ArrayList<>();
-        TipoDesconto TipoDesconto = null;
-        String sql = "select * from tipoDesconto";
+        String sql = "select * from tipoDesconto where IDTIPODESCONTO = ?";
         try{
             stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, numero);
             rs = stmt.executeQuery();
-            strJson = "[";
-            int i = 0;
             while(rs.next()){
-                if (i>0) strJson+=",";
-                strJson += "{\"idTipoDesconto\"}:"+rs.getInt("idTipoDesconto")+","
-                        + "\"descricao\":\""+rs.getString("descricao")+"\",";
-                
-                i++;             
+                strJson += "{\"idTipoDesconto\":"+rs.getInt("IDTIPODESCONTO")+",\"descricao\":\""+rs.getString("DESCRICAO")+"\"}";           
             }
-            strJson += "]";
         }catch (Exception e){
             System.out.println("Problemas ao listar TipoDesconto! Erro:" + e.getMessage());
             e.printStackTrace();
         }
-        System.out.println(strJson);
         return strJson;
     }
 }

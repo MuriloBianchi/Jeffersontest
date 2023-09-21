@@ -162,33 +162,25 @@ public class LocadorDAO implements GenericDAO{
           return resultado;
     }
     
-    
-    public String listarJSON(){
+    public String CarregarJSON(int numero){
         String strJson="";
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<Object> resultado = new ArrayList<>();
-        Locador Locador = null;
-        String sql = "select * from locador";
+        String sql = "select * from locador where IDLOCADOR = ?";
         try{
             stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, numero);
             rs = stmt.executeQuery();
-            strJson = "[";
-            int i = 0;
             while(rs.next()){
-                if (i>0) strJson+=",";
-                strJson += "{\"idLocador\"}:"+rs.getInt("idlocador")+","
+                strJson += "{\"idLocador\":"+rs.getInt("idlocador")+","
                         + "\"nome\":\""+rs.getString("nome")+"\","
-                        + "\"cpfCnpj\":\""+rs.getString("cpfcnpj")+"\",";
-                
-                i++;             
+                        + "\"cpfCnpj\":\""+rs.getString("cpfcnpj")+"\"}";
+                         
             }
-            strJson += "]";
         }catch (Exception e){
             System.out.println("Problemas ao listar locador! Erro:" + e.getMessage());
             e.printStackTrace();
         }
-        System.out.println(strJson);
         return strJson;
     }
 }

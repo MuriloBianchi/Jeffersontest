@@ -19,9 +19,12 @@ public class TipoImovelCarregar extends HttpServlet {
             response.setContentType("text/html;charset=iso-8859-1");
             int idTipoImovel = Integer.parseInt(request.getParameter("idTipoImovel"));
             try{
-                GenericDAO dao = new TipoImovelDAO();
-                request.setAttribute("tipoImovel", dao.carregar(idTipoImovel));
-                request.getRequestDispatcher("./cadastros/tipoImovel/tipoImovel.jsp").forward(request, response);
+                TipoImovelDAO dao = new TipoImovelDAO();
+                
+                String Json = dao.carregarJson(idTipoImovel);
+                
+                response.getWriter().write(Json);
+
             }catch (Exception ex){
                 System.out.println("Problemas na Servelet Carregar Tipo Imovel! Erro: " + ex.getMessage());
                 ex.printStackTrace();

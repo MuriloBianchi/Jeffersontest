@@ -57,12 +57,12 @@
                         <a align="left" id="descricao">${tipoDesconto.descricao}</a>
                     </div>
                     <div class="col-md-1">
-                        <a href="#" id="alterar" title="Alterar" onclick="alterar(${tipoDesconto.idTipoDesconto})" value="${tipoDesconto.descricao}">
+                        <a href="#" id="alterar" title="Alterar" onclick="alterar(${tipoDesconto.idTipoDesconto})" value="${tipoDesconto.idTipoDesconto}">
                             <button class="btn btn-group-lg btn-success"/>Alterar</button>
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${tipoDesconto.idTipoImovel})">
+                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${tipoDesconto.idTipoDesconto})">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>
@@ -77,6 +77,22 @@
     <a href="index.jsp">Voltar a pagina Inicial</a>
 </div>
 <script>
+    
+    function alterar(id){
+        $.ajax({
+       type: 'post',
+       url: 'TipoDescontoCarregar',
+       data:{idTipoDesconto: id},
+       success:
+               function (data){
+                   const TipoDesconto = JSON.parse(data);
+                   $("#descricaoC").val(TipoDesconto.descricao);
+                   $("#idtipoimovelC").val(TipoDesconto.idTipoDesconto);
+               }
+    }); 
+    }
+    
+    
 </script>
     
 <%@ include file="/footer.jsp" %>

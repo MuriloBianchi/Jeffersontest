@@ -36,10 +36,11 @@ public class TipoDescontoCarregar extends HttpServlet {
        int idTipoDesconto = Integer.parseInt(request.getParameter("idTipoDesconto"));
        
        try{
-           GenericDAO dao = new TipoDescontoDAO();
-           request.setAttribute("tipoDesconto ",dao.carregar(idTipoDesconto ));
-           request.getRequestDispatcher("cadastros/tipoDesconto/tipoDescontoCadastrar.jsp").forward(request, response);
-           
+           TipoDescontoDAO dao = new TipoDescontoDAO();
+          
+           String Json = dao.CarregarJSON(idTipoDesconto);
+                
+                response.getWriter().write(Json);
        } catch(Exception e){
            System.out.println("Problemas na servelet carregar TipoDesconto! Erro: "+ e.getMessage());
            e.printStackTrace();

@@ -36,9 +36,11 @@ public class LocatarioCarregar extends HttpServlet {
        int idLocatario = Integer.parseInt(request.getParameter("idLocatario"));
        
        try{
-           GenericDAO dao = new LocatarioDAO();
-           request.setAttribute("locatario",dao.carregar(idLocatario));
-           request.getRequestDispatcher("cadastros/locatario/locatarioCadastrar.jsp").forward(request, response);
+           LocatarioDAO dao = new LocatarioDAO();
+           
+           String Json = dao.CarregarJSON(idLocatario);
+                
+                response.getWriter().write(Json);
            
        } catch(Exception e){
            System.out.println("Problemas na servelet carregar Locatario! Erro: "+ e.getMessage());

@@ -36,7 +36,7 @@ public class TipoDescontoListar extends HttpServlet {
         try {
             GenericDAO dao = new TipoDescontoDAO();
             request.setAttribute("tipoDescontos", dao.listar());
-            request.getRequestDispatcher("/cadastros/tipoDesconto/tipoDesconto.jsp").forward(request, response);
+            request.getRequestDispatcher("/cadastros/tipodesconto/tipodesconto.jsp").forward(request, response);
         } catch (Exception ex) {
             System.out.println("Problemas no Servlet ao listar TipoDesconto! Erro: " + ex.getMessage());
             ex.printStackTrace();

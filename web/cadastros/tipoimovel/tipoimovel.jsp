@@ -76,7 +76,24 @@
     <buttom href=#">Novo</buttom>
     <a href="index.jsp">Voltar a pagina Inicial</a>
 </div>
+        
 <script>
+   function alterar(id){
+    $.ajax({
+       type: 'post',
+       url: 'TipoImovelCarregar',
+       data:{idTipoImovel: id},
+       success:
+               function (data){
+                   console.log("data");
+                   console.log(data);
+                   const TipoImovel = JSON.parse(data);
+                   console.log(TipoImovel.descricao);
+                   $("#descricaoC").val(TipoImovel.descricao);
+                   $("#idtipoimovelC").val(TipoImovel.idTipoImovel);
+               }
+    }); 
+   }
 </script>
     
 <%@ include file="/footer.jsp" %>

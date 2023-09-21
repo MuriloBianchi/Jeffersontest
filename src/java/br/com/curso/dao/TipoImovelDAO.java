@@ -147,4 +147,30 @@ public class TipoImovelDAO implements GenericDAO {
         }
         return resultado;     
     }
+    
+    public String carregarJson(int numero) {
+        int idTipoImovel = numero;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String strJson = "";
+        int i = 0;
+        String sql = "Select IDTIPOIMOVEL, DESCRICAO from TIPOIMOVEL where IDTIPOIMOVEL = ?";
+        try{
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idTipoImovel);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                if (i>0) strJson+=",";
+                strJson+= "{\"idTipoImovel\":" + rs.getInt("IDTIPOIMOVEL") + ", \"descricao\":\"" + rs.getString("DESCRICAO") + "\"}";
+                i++;
+            }
+             
+        }catch (Exception e){
+            System.out.println("Problemas ao Carregar Tipo Imovel! Erro:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return strJson;
+    }
+
+    
 }

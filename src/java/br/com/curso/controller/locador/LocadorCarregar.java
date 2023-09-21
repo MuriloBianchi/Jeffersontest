@@ -36,10 +36,11 @@ public class LocadorCarregar extends HttpServlet {
        int idLocador = Integer.parseInt(request.getParameter("idLocador"));
        
        try{
-           GenericDAO dao = new LocadorDAO();
-           request.setAttribute("locador",dao.carregar(idLocador));
-           request.getRequestDispatcher("cadastros/locador/locadorCadastrar.jsp").forward(request, response);
-           
+           LocadorDAO dao = new LocadorDAO();
+          
+           String Json = dao.CarregarJSON(idLocador);
+                
+                response.getWriter().write(Json);
        } catch(Exception e){
            System.out.println("Problemas na servelet carregar locador! Erro: "+ e.getMessage());
            e.printStackTrace();

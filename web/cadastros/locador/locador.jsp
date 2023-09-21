@@ -22,15 +22,15 @@
     </div>
     <div class="col-md-12 row">
         <div class="col-md-4">
-            <input class="form-control" type="text" name="idtipoimovelC" id="idtipoimovelC" 
+            <input class="form-control" type="text" name="idtipoimovelC" id="idLocadorC" 
             value="${locador.idTipoImovel}" size="100" maxlength="100">
         </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="Nome" id="descricaoC" 
+            <input class="form-control" type="text" name="Nome" id="nomeC" 
             value="${locador.nome}" size="100" maxlength="100">
         </div>
         <div class="col-md-4">
-            <input class="form-control" type="text" name="descricaoC" id="descricaoC" 
+            <input class="form-control" type="text" name="descricaoC" id="cpfCnpjC" 
             value="${locador.cpfCnpj}" size="100" maxlength="100">
         </div>
     </div>
@@ -87,6 +87,22 @@
     <a href="index.jsp">Voltar a pagina Inicial</a>
 </div>
 <script>
+    
+    function alterar(id){
+        $.ajax({
+       type: 'post',
+       url: 'LocadorCarregar',
+       data:{idLocador: id},
+       success:
+               function (data){
+                   const Locador = JSON.parse(data);
+                   $("#cpfCnpjC").val(Locador.cpfCnpj);
+                   $("#idLocadorC").val(Locador.idLocador);
+                   $('#nomeC').val(Locador.nome);
+               }
+    }); 
+    }
+    
 </script>
     
 <%@ include file="/footer.jsp" %>
