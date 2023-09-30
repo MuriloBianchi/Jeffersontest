@@ -37,14 +37,19 @@ public class LocadorCadastrar extends HttpServlet {
         String mensagem = null;
         try {
                 Locador oLocador = new Locador();
-                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocadorC")));
+                String id = request.getParameter("idlocadorC");
+                if (id.length()  >  0){
+                    oLocador.setIdLocador( Integer.parseInt(id));
+                }else{
+                     oLocador.setIdLocador(0);
+                }
                 oLocador.setNome(request.getParameter("nomeC"));
                 oLocador.setCpfCnpj(request.getParameter("cpfCnpjC"));
                 
                 LocadorDAO dao = new LocadorDAO();
                 
                 if(dao.cadastrar(oLocador)){
-                    response.getWriter().write("1");
+                    request.getRequestDispatcher("LocadorListar").forward(request, response);
                     
                 } else{
                     response.getWriter().write("0");

@@ -7,7 +7,7 @@
 <form name="TipoDescontoCadastrar" action="TipoDescontoCadastrar" method="POST">
 <div class="col-md-12 fixed-top" style="height: 175px; background-color: #212529; margin-top: 50px" >
     <div class="row col-md-12" style="margin-top: 15px">
-        <label class="col-md-12" style="background-color: #212529; color: white; font-size: 16px">Casdastro De Tipo Desconto</label>
+        <label class="col-md-12" style="background-color: #212529; color: white; font-size: 16px">Casdastro de Tipo Desconto</label>
     </div>
     <div class="col-md-12 row">
         <div class="col-md-4" style="color: white">
@@ -20,7 +20,7 @@
     <div class="col-md-12 row">
         <div class="col-md-4">
             <input class="form-control" type="text" name="idtipodescontoC" id="idtipodescontoC" 
-            value="${tipoDesconto.idTipoDesconto}" size="100" maxlength="100" readonly="readonly">
+            value="${tipoDesconto.idTipoDesconto}" size="100" maxlength="100" >
         </div>
         <div class="col-md-8">
             <input class="form-control" type="text" name="descricaoC" id="descricaoC" 
@@ -63,7 +63,7 @@
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${tipoDesconto.idTipoDesconto})">
+                        <a href="${pageContext.request.contextPath}/TipoDescontoExcluir?idTipoDesconto=${tipoDesconto.idTipoDesconto}" id="deletar" title="Excluir">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>

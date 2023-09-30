@@ -29,7 +29,7 @@ public class ImovelDAO implements GenericDAO {
     }
     @Override
     public Boolean cadastrar(Object objeto) {
-          Imovel oImovel = (Imovel)objeto;
+        Imovel oImovel = (Imovel)objeto;
         boolean retorno=false;
         if(oImovel.getIdImovel()==0){
             retorno = this.inserir(oImovel);
@@ -41,7 +41,7 @@ public class ImovelDAO implements GenericDAO {
 
     @Override
     public Boolean inserir(Object objeto) {
-              Imovel oImovel = (Imovel)objeto;
+        Imovel oImovel = (Imovel)objeto;
         PreparedStatement stmt = null;
         String sql = "Insert into imovel (descricao ,rua, numero, bairro, valoraluguel, taxaadministracao, idtipoimovel, idlocador) values (?,?,?,?,?,?,?,?)";
         try{
@@ -75,7 +75,7 @@ public class ImovelDAO implements GenericDAO {
     public Boolean alterar(Object objeto) {
         Imovel oImovel = (Imovel)objeto;
         PreparedStatement stmt = null;
-              String sql = "update imovel set descricao=?,rua=?,numero=?,bairro=?,valoraluguel=?,taxaadministracao=?,idtipoimovel=?,idlocador=? where idimovel =?";
+        String sql = "update imovel set descricao=?,rua=?,numero=?,bairro=?,valoraluguel=?,taxaadministracao=?,idtipoimovel=?,idlocador=? where idimovel =?";
         try{
           stmt = conexao.prepareStatement(sql);
           stmt.setString(1, oImovel.getDescricao());
@@ -86,6 +86,7 @@ public class ImovelDAO implements GenericDAO {
           stmt.setDouble(6, oImovel.getTaxaAdministracao());
           stmt.setInt(7, oImovel.getTipoImovel().getIdTipoImovel());
           stmt.setInt(8, oImovel.getLocador().getIdLocador());
+          stmt.setInt(9, oImovel.getIdImovel());
           stmt.execute();
           conexao.commit();
           return  true;
@@ -187,7 +188,6 @@ public class ImovelDAO implements GenericDAO {
                     ex.printStackTrace();
                 }
                  oImovel.setTipoImovel((TipoImovel) oTipoImovelDAO.carregar(rs.getInt("idTipoImovel")));
-                 resultado.add(oImovel);
                  
                  LocadorDAO oLocadorDAO = null;
                 try{

@@ -63,8 +63,8 @@
             value="${imovel.bairro}" size="100" maxlength="100">
         </div>
         <div class="col-md-2">
-            <input class="form-control" type="text" name="valorAluguelC" id="valorAluguelC" 
-            value="${imovel.valorAluguel}" size="100" maxlength="100">
+            <input class="form-control" type="text" name="valorAluguelC" id="valorAluguelC" size="100" maxlength="100"
+            value="<fmt:formatNumber value='${imovel.valorAluguel}' type='currency'/>">
         </div>
         <div class="col-md-2">
             <input class="form-control" type="text" name="taxaAdministracaoC" id="taxaAdministracaoC" 

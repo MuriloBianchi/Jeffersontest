@@ -38,9 +38,7 @@ public class LocadorExcluir extends HttpServlet {
         try {
             GenericDAO dao = new LocadorDAO();
             if(dao.excluir(idLocador)){
-                
-                response.getWriter().write("1");
-                
+                request.getRequestDispatcher("LocadorListar").forward(request, response);
             } else{
                 response.getWriter().write("0");
             }

@@ -38,13 +38,10 @@ public class TipoDescontoExcluir extends HttpServlet {
         try {
             GenericDAO dao = new TipoDescontoDAO();
             if(dao.excluir(idTipoDesconto)){
-                
-                response.getWriter().write("1");
-                
+                request.getRequestDispatcher("TipoDescontoListar").forward(request, response);
             } else{
                 response.getWriter().write("0");
             }
-           
         }catch (Exception e){
             System.out.println("Problemas na Servelet Excluir TipoDesconto! Erro: " + e.getMessage());
             e.printStackTrace();

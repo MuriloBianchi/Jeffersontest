@@ -12,9 +12,16 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/dao/ContratoLocacaoDAO.java</file>
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/dao/ImovelDAO.java</file>
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/model/ContratoLocacao.java</file>
+=======
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/cadastros/imovel/imovel.jsp</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/src/java/br/com/curso/utils/banco.sql</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/menu.jsp</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/cadastros/contratoLocacao/contratoLocacao.jsp</file>
+>>>>>>> f9baf75d375048f5b1ce4bee9c387e383f4c929a
         </group>
     </open-files>
 </project-private>

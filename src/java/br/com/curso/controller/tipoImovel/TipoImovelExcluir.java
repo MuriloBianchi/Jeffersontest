@@ -19,11 +19,11 @@ public class TipoImovelExcluir extends HttpServlet {
             response.setContentType("text/html;charset=iso-8859-1");
             int idTipoImovel = Integer.parseInt(request.getParameter("idTipoImovel"));
             try{
-                 GenericDAO dao = new TipoImovelDAO();
-                 if (dao.excluir(idTipoImovel)){
-                response.getWriter().write("1");
-            }else{
-                response.getWriter().write("0");
+                GenericDAO dao = new TipoImovelDAO();
+                if (dao.excluir(idTipoImovel)){
+                    request.getRequestDispatcher("TipoImovelListar").forward(request, response);
+                }else{
+                    response.getWriter().write("0");
             }
             }catch (Exception ex){
                 System.out.println("Problemas na Servelt Excluir Tipo Imovel! Erro: " + ex.getMessage());
