@@ -7,7 +7,6 @@ package br.com.curso.controller.tipoImovel;
 import br.com.curso.dao.TipoImovelDAO;
 import br.com.curso.model.TipoImovel;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +21,16 @@ public class TipoImovelCadastrar extends HttpServlet {
         response.setContentType("text/html;charset=iso-8859-1");
         try{
             TipoImovel oTipoImovel = new TipoImovel();
-            oTipoImovel.setIdTipoImovel(Integer.parseInt(request.getParameter("idtipoimovelC")));
+            
+            String  id = request.getParameter("idtipoimovelC");
+            
+            if (id.length()  >  0){
+                
+                oTipoImovel.setIdTipoImovel( Integer.parseInt(id));
+            }else{
+                 oTipoImovel.setIdTipoImovel(0);
+            }
+           
             oTipoImovel.setDescricao(request.getParameter("descricaoC"));
             TipoImovelDAO dao = new TipoImovelDAO();
             

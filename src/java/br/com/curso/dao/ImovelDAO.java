@@ -204,7 +204,8 @@ public class ImovelDAO implements GenericDAO {
         } 
         return resultado;
        
-    }    
+    }
+    
     public String carregarJson(int numero) {
         int idImovel = numero;
         PreparedStatement stmt = null;
@@ -234,4 +235,26 @@ public class ImovelDAO implements GenericDAO {
         return strJson;
     }
     
+    public Imovel  GetInfoImovel(int idImovel){
+        Imovel oImovel = new Imovel();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        String sql = "Select valorAluguel, TaxaAdministracao from Imovel where idImovel  = ?";
+        
+        try{
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idImovel);
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                oImovel.setValorAluguel(rs.getDouble("VALORALUGUEL"));
+                oImovel.setTaxaAdministracao(rs.getDouble("TAXAADMINISTRACAO"));
+            }
+        }catch(Exception ex){
+            System.out.println("Problemas ao Carregar informacoes! Erro: " + ex.getMessage());
+                    ex.printStackTrace();
+        }
+        
+        return oImovel;
+    }
 }  

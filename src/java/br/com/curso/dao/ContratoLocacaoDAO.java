@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ContratoLocacaoDAO implements GenericDAO {
@@ -39,7 +41,19 @@ public class ContratoLocacaoDAO implements GenericDAO {
     @Override
     public Boolean inserir(Object objeto) {
          ContratoLocacao oContratoLocacao = (ContratoLocacao) objeto;
-         PreparedStatement stmt = null;
+         Imovel oImovel = new Imovel();
+         
+        try {
+            ImovelDAO dao = new ImovelDAO();
+            oImovel = dao.GetInfoImovel(oContratoLocacao.getIdImovel().getIdImovel());
+        } catch (Exception ex) {
+            System.out.println("Erro Dao Imovel! " + ex.getMessage());
+            ex.printStackTrace();
+            return false;
+        }
+         
+            
+            PreparedStatement stmt = null;
          String sql = "INSERT INTO CONTRATOLOCACAO (IDCONTRATO, DATACONTRATO, DATAINICIO, DATAFINAL, MESESCONTRATO, DIARECEBIMENTO, DIAPAGAMENTO, VALORTOTALCONTRATO, VALORRECEBIDO, VALORDESCONTOS, VALORPAGO, VALORJUROSMULTARECEBIDO, VALORJUROSMULTAPAGO, SALDOCONTRATO, IDIMOVEL, IDLOCADOR, IDLOCATARIO, NROPARCELA, IDPARCELAPAGAR, IDPARCELADESCONTO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
          try{
              stmt = conexao.prepareCall(sql);
@@ -49,7 +63,7 @@ public class ContratoLocacaoDAO implements GenericDAO {
             stmt.setInt(4, oContratoLocacao.getMesesContrato());
             stmt.setInt(5, oContratoLocacao.getDiaRecebimento());
             stmt.setInt(6, oContratoLocacao.getDiaPagamento());
-            stmt.setDouble(7, oContratoLocacao.getValorTotalContrato());
+            stmt.setDouble(7, (oImovel.getValorAluguel()  * oContratoLocacao.getMesesContrato()));
             stmt.setDouble(8, oContratoLocacao.getValorRecebido());
             stmt.setDouble(9, oContratoLocacao.getValorDescontos());
             stmt.setDouble(10, oContratoLocacao.getValorPago());
@@ -285,6 +299,82 @@ public class ContratoLocacaoDAO implements GenericDAO {
             e.printStackTrace();
         }
         return resultado;
+    }
+    
+    
+    public boolean InserirParcelas(Object Contrato, double taxaAdministracao){
+        ContratoLocacao oContrato = (ContratoLocacao)Contrato;
+        
+        // Valor Total do Contrato (Ambos)
+        double valorTotal = oContrato.getValorTotalContrato();
+        
+        // Data Inicio Contrato
+        Date dataInicio = oContrato.getDataInicio();
+        
+        // Desconto Taxa Administracao
+         double descontoTaxa = (taxaAdministracao / 100)  * valorTotal;
+         
+        // Ambos
+        int meses = oContrato.getMesesContrato();
+        int diaRecebimento = oContrato.getDiaRecebimento();
+        
+          // Parcela Receber
+        double valorParcela = (valorTotal / meses)  - descontoTaxa;
+          
+        // Parcela Pagar
+        int diaPagamento = oContrato.getDiaPagamento();
+        
+        
+        int i = 1;
+        
+        // Configurando a data
+         Calendar calendar = Calendar.getInstance();
+         calendar.setTime(dataInicio);
+         calendar.set(Calendar.DAY_OF_MONTH,  diaRecebimento);
+         
+         PreparedStatement stmt = null;
+         String sql = "";
+        
+         try{
+             
+              //Parcela Receber
+                do{
+                       calendar.add(Calendar.MONTH,  i);
+                       sql += "Insert into ParcelaReceber (datavencimento, valorparcela, situacao, idcontrato) values (?, ?, ?, ?)";
+                       stmt = conexao.prepareStatement(sql);
+                       stmt.setDate(1, new java.sql.Date( calendar.getTimeInMillis()));
+                       stmt.setDouble(2, valorParcela);
+                       stmt.setString(3, "Pendente");
+                       stmt.setInt(4, oContrato.getIdContrato());
+                       stmt.execute();
+                       conexao.commit();
+                        i++;
+                        sql = "";
+                  }while( i<= meses);
+                
+                i = 1;
+                
+                 calendar.setTime(dataInicio);
+                 calendar.set(Calendar.DAY_OF_MONTH,  diaPagamento);
+         
+                  // Parcela Pagar
+                do{
+                     calendar.add(Calendar.MONTH,  i);
+                     sql = "insert into ParcelaPagar(dataVencimento, valorDescontos, valorPagar ,situacao) values (?,?,?,?)";
+                       stmt = conexao.prepareStatement(sql);
+                       stmt.setDate(1, new java.sql.Date( calendar.getTimeInMillis()));
+                       stmt.setDouble(2, oContrato.getValorDescontos());
+                       stmt.setDouble(3, valorTotal);
+                       stmt.setString(4, "Pendente");
+                }while(i <= meses);
+                
+         }catch(Exception ex){
+             System.out.println("Erro ao criar parcelas! Erro: " + ex.getMessage());
+             ex.printStackTrace();
+             return false;
+         };
+         
+        return true;
     }
     
 }

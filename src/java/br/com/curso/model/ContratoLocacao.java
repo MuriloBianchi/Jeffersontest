@@ -1,6 +1,7 @@
 package br.com.curso.model;
 
 import br.com.curso.utils.Conversao;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ContratoLocacao {
@@ -231,7 +232,27 @@ public class ContratoLocacao {
     public void setIdParcelaDesconto(ParcelaDesconto idParcelaDesconto) {
         this.idParcelaDesconto = idParcelaDesconto;
     }
-
     
+
+    public int GetMeses(){
+        return CalculaMeses();
+    }
+    
+    private int CalculaMeses(){
+        
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+
+        cal1.setTime(this.dataInicio);
+        cal2.setTime(this.dataFinal);
+
+        int anos = cal2.get(Calendar.YEAR) - cal1.get(Calendar.YEAR);
+        int meses = cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH);
+
+        int mesesTotais = (anos * 12) + meses;
+
+        return mesesTotais;
+    }
+           
     
 }
