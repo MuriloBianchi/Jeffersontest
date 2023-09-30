@@ -63,7 +63,7 @@
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${tipoImovel.idTipoImovel})">
+                        <a href="${pageContext.request.contextPath}/TipoImovelExcluir?idTipoImovel=${tipoImovel.idTipoImovel}" id="deletar" title="Excluir">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>
@@ -90,18 +90,6 @@
                }
     }); 
    }
-   /*
-   function validarCampos(id, descricao){
-        $.ajax({
-           type: 'post',
-           url: 'TipoImovelCadastrar',
-           data:{idTipoImovel: id, descricao: descricao},
-           success:
-                   function (data){
-                       console.log("data");
-                   }
-        }); 
-   }*/
 </script>
     
 <%@ include file="/footer.jsp" %>

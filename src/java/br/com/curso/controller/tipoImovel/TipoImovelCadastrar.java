@@ -22,12 +22,18 @@ public class TipoImovelCadastrar extends HttpServlet {
         response.setContentType("text/html;charset=iso-8859-1");
         try{
             TipoImovel oTipoImovel = new TipoImovel();
-            oTipoImovel.setIdTipoImovel(Integer.parseInt(request.getParameter("idtipoimovelC")));
+            
+            String id = request.getParameter("idtipoimovelC");
+            if (id.length()  >  0){
+                oTipoImovel.setIdTipoImovel( Integer.parseInt(id));
+            }else{
+                 oTipoImovel.setIdTipoImovel(0);
+            }
             oTipoImovel.setDescricao(request.getParameter("descricaoC"));
             TipoImovelDAO dao = new TipoImovelDAO();
             
             if (dao.cadastrar(oTipoImovel)){
-                response.getWriter().write("1");
+                request.getRequestDispatcher("TipoImovelListar").forward(request, response);
             }else{
                 response.getWriter().write("0");
             }

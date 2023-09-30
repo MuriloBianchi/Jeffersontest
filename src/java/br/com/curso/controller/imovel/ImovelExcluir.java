@@ -38,9 +38,7 @@ public class ImovelExcluir extends HttpServlet {
         try {
             GenericDAO dao = new ImovelDAO();
             if(dao.excluir(idImovel)){
-                
-                response.getWriter().write("1");
-                
+                request.getRequestDispatcher("ImovelListar").forward(request, response);
             } else{
                 response.getWriter().write("0");
             }

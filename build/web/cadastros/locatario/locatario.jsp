@@ -73,7 +73,7 @@
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${locador.idLocador})">
+                        <a href="${pageContext.request.contextPath}/LocatarioExcluir?idLocatario=${locatario.idLocatario}" id="deletar" title="Excluir">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>

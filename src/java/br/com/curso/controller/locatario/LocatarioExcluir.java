@@ -38,13 +38,10 @@ public class LocatarioExcluir extends HttpServlet {
         try {
             GenericDAO dao = new LocatarioDAO();
             if(dao.excluir(idLocatario)){
-                
-                response.getWriter().write("1");
-                
+                request.getRequestDispatcher("LocatarioListar").forward(request, response);
             } else{
                 response.getWriter().write("0");
             }
-           
         }catch (Exception e){
             System.out.println("Problemas na Servelet Excluir Locatario! Erro: " + e.getMessage());
             e.printStackTrace();

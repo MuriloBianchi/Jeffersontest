@@ -37,14 +37,18 @@ public class LocatarioCadastrar extends HttpServlet {
         String mensagem = null;
         try {
                 Locatario oLocatario = new Locatario();
-                oLocatario.setIdLocatario(Integer.parseInt(request.getParameter("idlocatarioC")));
+                String id = request.getParameter("idlocatarioC");
+                if (id.length()  >  0){
+                    oLocatario.setIdLocatario( Integer.parseInt(id));
+                }else{
+                    oLocatario.setIdLocatario(0);
+                }
                 oLocatario.setNome(request.getParameter("nomeC"));
                 oLocatario.setCpfCnpj(request.getParameter("cpfCnpjC"));
                 LocatarioDAO dao = new LocatarioDAO();
                 
                 if(dao.cadastrar(oLocatario)){
-                    response.getWriter().write("1");
-                    
+                    request.getRequestDispatcher("LocatarioListar").forward(request, response);
                 } else{
                     response.getWriter().write("0");
                 }

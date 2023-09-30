@@ -37,13 +37,18 @@ public class TipoDescontoCadastrar extends HttpServlet {
         String mensagem = null;
         try {
                 TipoDesconto oTipoDesconto = new TipoDesconto();
-                oTipoDesconto.setIdTipoDesconto(Integer.parseInt(request.getParameter("idtipodescontoC")));
+                String id = request.getParameter("idtipodescontoC");
+                if (id.length()  >  0){
+                    oTipoDesconto.setIdTipoDesconto( Integer.parseInt(id));
+                }else{
+                     oTipoDesconto.setIdTipoDesconto(0);
+                }
                 oTipoDesconto.setDescricao(request.getParameter("descricaoC"));
               
                TipoDescontoDAO dao = new TipoDescontoDAO();
                 
                 if(dao.cadastrar(oTipoDesconto)){
-                    response.getWriter().write("1");
+                    request.getRequestDispatcher("TipoDescontoListar").forward(request, response);
                     
                 } else{
                     response.getWriter().write("0");
