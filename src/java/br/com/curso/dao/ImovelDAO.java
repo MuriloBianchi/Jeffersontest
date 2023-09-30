@@ -73,8 +73,7 @@ public class ImovelDAO implements GenericDAO {
 
     @Override
     public Boolean alterar(Object objeto) {
-         Imovel oImovel = (Imovel)objeto;
-                
+        Imovel oImovel = (Imovel)objeto;
         PreparedStatement stmt = null;
               String sql = "update imovel set descricao=?,rua=?,numero=?,bairro=?,valoraluguel=?,taxaadministracao=?,idtipoimovel=?,idlocador=? where idimovel =?";
         try{

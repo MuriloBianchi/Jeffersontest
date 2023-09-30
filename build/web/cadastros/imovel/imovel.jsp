@@ -24,20 +24,20 @@
     </div>
     <div class="col-md-12 row">
         <div class="col-md-1">
-            <input class="form-control" type="text" name="idimovelC" id="idImovelC" 
-            value="${Imovel.idImovel}" size="100" maxlength="100">
+            <input class="form-control" type="text" name="idImovelC" id="idImovelC" 
+            value="${imovel.idImovel}" size="100" maxlength="100">
         </div>
         <div class="col-md-4">
             <input class="form-control" type="text" name="descricaoC" id="descricaoC" 
-            value="${Imovel.descricao}" size="100" maxlength="100">
+            value="${imovel.descricao}" size="100" maxlength="100">
         </div>
         <div class="col-md-6">
             <input class="form-control" type="text" name="ruaC" id="ruaC" 
-            value="${Imovel.rua}" size="100" maxlength="100">
+            value="${imovel.rua}" size="100" maxlength="100">
         </div>
         <div class="col-md-1">
             <input class="form-control" type="text" name="numeroC" id="numeroC" 
-            value="${Imovel.numero}" size="100" maxlength="100">
+            value="${imovel.numero}" size="100" maxlength="100">
         </div>
     </div>
     <div class="col-md-12 row">
@@ -60,21 +60,21 @@
     <div class="col-md-12 row" style="margin-top: 10px">
         <div class="col-md-2">
             <input class="form-control" type="text" name="bairroC" id="bairroC" 
-            value="${Imovel.bairro}" size="100" maxlength="100">
+            value="${imovel.bairro}" size="100" maxlength="100">
         </div>
         <div class="col-md-2">
             <input class="form-control" type="text" name="valorAluguelC" id="valorAluguelC" 
-            value="${Imovel.valorAluguel}" size="100" maxlength="100">
+            value="${imovel.valorAluguel}" size="100" maxlength="100">
         </div>
         <div class="col-md-2">
-            <input class="form-control" type="text" name="TaxaAdministracaoC" id="taxaAdministracaoC" 
-            value="${Imovel.TaxaAdministacao}" size="100" maxlength="100">
+            <input class="form-control" type="text" name="taxaAdministracaoC" id="taxaAdministracaoC" 
+            value="${imovel.taxaAdministracao}" size="100" maxlength="100">
         </div>
         <div class="col-md-2">
             <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
                 <option value="">[Nenhum]</option>
                         <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.idTipoImovel}"
+                            <option value="${imovel.tipoImovel.idTipoImovel}"
                                     ${imovel.tipoImovel.idTipoImovel == tipoImovel.idTipoImovel ? "selected" : ""}>
                                     ${imovel.tipoImovel.descricao} 
                             </option>
@@ -85,7 +85,7 @@
             <select class="form-control"  type="text" name="locadorC" id="locadorC">
                 <option value="">[Nenhum]</option>
                         <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.idLocador}" 
+                            <option value="${imovel.locador.idLocador}" 
                                     ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
                                     ${imovel.locador.nome}
                             </option>
@@ -107,10 +107,30 @@
         <div class="col-md-1">
             <label>Id</label>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-2">
             <label>Descrição</label>
         </div>
-    
+        <div class="col-md-1">
+            <label>Rua</label>
+        </div>
+        <div class="col-md-1">
+            <label>Numero</label>
+        </div>
+        <div class="col-md-1">
+            <label>Bairro</label>
+        </div>
+        <div class="col-md-1">
+            <label>Valor Aluguel</label>
+        </div>
+        <div class="col-md-1">
+            <label>Taxa Administracao</label>
+        </div>
+        <div class="col-md-1">
+            <label>Tipo Imovel</label>
+        </div>
+        <div class="col-md-1">
+            <label>Locador</label>
+        </div>
         <div class="col-md-12 row">
             <c:forEach var="imovel" items="${imoveis}" >
                 <div class="col-md-13 row" style="margin-top: 10px">

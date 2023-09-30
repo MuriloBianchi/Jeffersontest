@@ -16,7 +16,7 @@ public class Imovel {
     private String numero;
     private String bairro;
     private double valorAluguel;
-    private  double taxaAdministracao;
+    private double taxaAdministracao;
     private TipoImovel tipoImovel;
     private Locador locador;
 

@@ -14,6 +14,10 @@
             <a class="nav-link" href="#" id="Home" style="--color: #FF3333"><span>Home </span><span class="sr-only">(atual)</span><i></i></a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#" id="ContratoLocacao" onclick="Listar(this)"
+            style="--color: #FF9933"><span>Contrato Locação</span><i></i></a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#" id="TipoImvovel" onclick="Listar(this)"
             style="--color: #FF9933"><span>Tipo Imóvel</span><i></i></a>
           </li>
@@ -50,6 +54,10 @@
             
             case "Home":
                 window.location.href = "./index.jsp";
+            break;
+            
+            case "ContratoLocacao":
+                window.location.href = "./cadastros/contratoLocacao/contratoLocacao.jsp";
             break;
             
             case "TipoImvovel":

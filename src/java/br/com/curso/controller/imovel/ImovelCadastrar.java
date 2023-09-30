@@ -41,13 +41,13 @@ public class ImovelCadastrar extends HttpServlet {
         int idLocador = Integer.parseInt(request.getParameter("locadorC"));
         try {
                 Imovel oImovel = new Imovel();
-                oImovel.setIdImovel(Integer.parseInt(request.getParameter("idImovelC")));
+                oImovel.setIdImovel(Integer.parseInt(request.getParameter("idImov elC")));
                 oImovel.setDescricao(request.getParameter("descricaoC"));
                 oImovel.setRua(request.getParameter("ruaC"));
                 oImovel.setNumero(request.getParameter("numeroC"));
                 oImovel.setBairro(request.getParameter("bairroC"));
                 oImovel.setValorAluguel(Conversao.valorDinheiro(request.getParameter("valorAluguelC")));
-                oImovel.setTaxaAdministracao(Conversao.valorDinheiro(request.getParameter("taxaAdministracaoC")));
+                oImovel.setTaxaAdministracao(Integer.parseInt(request.getParameter("taxaAdministracaoC")));
                 oImovel.setTipoImovel(new TipoImovel(idTipoImovel,""));
                 oImovel.setLocador(new Locador (idLocador,"",""));
                 ImovelDAO dao = new ImovelDAO();
