@@ -58,10 +58,11 @@ public class TipoImovelDAO implements GenericDAO {
     public Boolean alterar(Object objeto) {
         TipoImovel oTipoImovel = (TipoImovel) objeto;
         PreparedStatement stmt = null;
-        String sql = "update TIPOIMOVEL set DESCRICAO = ?";
+        String sql = "update TIPOIMOVEL set DESCRICAO = ? where IDTIPOIMOVEL = ?";
         try{
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, oTipoImovel.getDescricao());
+            stmt.setInt(2, oTipoImovel.getIdTipoImovel());
             stmt.execute();
             conexao.commit();
             return true;
@@ -131,7 +132,7 @@ public class TipoImovelDAO implements GenericDAO {
         ResultSet rs = null;
         List<Object> resultado = new ArrayList<>();
         TipoImovel oTipoImovel = null;
-        String sql = "Select IDTIPOIMOVEL, DESCRICAO from TIPOIMOVEL";
+        String sql = "Select IDTIPOIMOVEL, DESCRICAO from TIPOIMOVEL order by idtipoimovel";
         try{
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();

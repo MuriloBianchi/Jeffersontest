@@ -65,7 +65,7 @@
             break;
 
             case "Locatário":
-                window.location.href = "./cadastros/locatario/locatario.jsp";
+                window.location.href = "LocatarioListar";
             break;
 
             case "Imovel":

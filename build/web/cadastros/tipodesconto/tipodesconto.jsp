@@ -4,7 +4,7 @@
 <jsp:include page="/header.jsp"/>
 <jsp:include page="/menu.jsp"/>
 
-
+<form name="TipoDescontoCadastrar" action="TipoDescontoCadastrar" method="POST">
 <div class="col-md-12 fixed-top" style="height: 175px; background-color: #212529; margin-top: 50px" >
     <div class="row col-md-12" style="margin-top: 15px">
         <label class="col-md-12" style="background-color: #212529; color: white; font-size: 16px">Casdastro De Tipo Desconto</label>
@@ -19,8 +19,8 @@
     </div>
     <div class="col-md-12 row">
         <div class="col-md-4">
-            <input class="form-control" type="text" name="idtipodesconto" id="idtipoimovelC" 
-            value="${tipoDesconto.idTipoDesconto}" size="100" maxlength="100">
+            <input class="form-control" type="text" name="idtipodescontoC" id="idtipodescontoC" 
+            value="${tipoDesconto.idTipoDesconto}" size="100" maxlength="100" readonly="readonly">
         </div>
         <div class="col-md-8">
             <input class="form-control" type="text" name="descricaoC" id="descricaoC" 
@@ -31,12 +31,13 @@
         <div class="col-md-8"></div>
         <div align="right" class="col-md-4">
             <div>
-                <button class="btn btn-success" type="submit" id="submit"onclick="validarCampos()">Incluir</button>
+                <button class="btn btn-success" type="submit" id="cadastrar"onclick="">Incluir</button>
                 <button class="btn btn-success" type="submit" id="submit"onclick="">Alterar</button>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 <div class="col-12 panel-body" style="margin-top: 250px">
     <div class="col-md-12 row">
@@ -51,7 +52,7 @@
             <c:forEach var="tipoDesconto" items="${tipoDescontos}" >
                 <div class="col-md-13 row" style="margin-top: 10px">
                     <div class="col-md-1">
-                        <a align="left" id="idtipoimovel">${tipoDesconto.idTipoDesconto}</a>
+                        <a align="left" id="idtipodesconto">${tipoDesconto.idTipoDesconto}</a>
                     </div>
                     <div class="col-md-8">
                         <a align="left" id="descricao">${tipoDesconto.descricao}</a>
@@ -87,7 +88,7 @@
                function (data){
                    const TipoDesconto = JSON.parse(data);
                    $("#descricaoC").val(TipoDesconto.descricao);
-                   $("#idtipoimovelC").val(TipoDesconto.idTipoDesconto);
+                   $("#idtipodescontoC").val(TipoDesconto.idTipoDesconto);
                }
     }); 
     }

@@ -142,7 +142,7 @@ public class TipoDescontoDAO implements GenericDAO {
         ResultSet rs = null;
         List<Object> resultado = new ArrayList<>();
         TipoDesconto oTipoDesconto = null;
-        String sql = "select * from TipoDesconto";
+        String sql = "select * from TipoDesconto Order By IdTipoDesconto";
          try{
              stmt = conexao.prepareStatement(sql);
              rs = stmt.executeQuery();

@@ -166,7 +166,7 @@ public class ImovelDAO implements GenericDAO {
         List<Object> resultado = new ArrayList<>();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        String sql = "Select * from cidade order by idimovel";
+        String sql = "Select * from imovel order by idimovel";
         try {
             stmt = conexao.prepareStatement(sql);
             rs = stmt.executeQuery();
@@ -175,17 +175,64 @@ public class ImovelDAO implements GenericDAO {
                 oImovel.setIdImovel(rs.getInt("idImovel"));
                 oImovel.setDescricao(rs.getString("descricao"));
                 oImovel.setRua(rs.getString("rua"));
+                oImovel.setNumero(rs.getString("numero"));
                 oImovel.setBairro(rs.getString("bairro"));
-                oImovel.setRua(rs.getString("rua"));
                 oImovel.setValorAluguel(rs.getDouble("valorAluguel"));
                 oImovel.setTaxaAdministracao(rs.getDouble("taxaAdministracao"));
-                resultado.add(oImovel);
+                
+                TipoImovelDAO oTipoImovelDAO = null;
+                try{
+                    oTipoImovelDAO = new TipoImovelDAO();
+                }catch(Exception ex){
+                    System.out.println("Erro ao buscar Tipo Imovel " + ex.getMessage());
+                    ex.printStackTrace();
+                }
+                 oImovel.setTipoImovel((TipoImovel) oTipoImovelDAO.carregar(rs.getInt("idTipoImovel")));
+                 resultado.add(oImovel);
+                 
+                 LocadorDAO oLocadorDAO = null;
+                try{
+                    oLocadorDAO = new LocadorDAO();
+                }catch(Exception ex){
+                    System.out.println("Erro ao buscar Locador " + ex.getMessage());
+                    ex.printStackTrace();
+                }
+                 oImovel.setLocador((Locador) oLocadorDAO.carregar(rs.getInt("idLocador")));
+                 resultado.add(oImovel);
             }
         } catch (SQLException ex) {
             System.out.println("Problemas ao listar imóveis! Erro: " + ex.getMessage());
         } 
         return resultado;
        
-}
-        
+    }    
+    public String carregarJson(int numero) {
+        int idImovel = numero;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        String strJson = "";
+        String sql = "Select * from imovel where IDIMOVEL = ?";
+        try{
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idImovel);
+            rs = stmt.executeQuery();
+            while(rs.next()){
+                strJson += "{\"idImovel\":"+rs.getInt("idimovel")+","
+                        + "\"descricao\":\""+rs.getString("descricao")+"\","
+                        + "\"rua\":\""+rs.getString("rua")+"\","
+                        + "\"numero\":\""+rs.getInt("numero")+"\","
+                        + "\"bairro\":\""+rs.getString("bairro")+"\","
+                        + "\"valorAluguel\":\""+rs.getInt("valoraluguel")+"\","
+                        + "\"taxaAdministracao\":\""+rs.getInt("taxaadministracao")+"\","
+                        + "\"idTipoImovel\":\""+rs.getInt("idtipoImovel")+"\","
+                        + "\"idLocador\":\""+rs.getInt("idlocador")+"\"}";           
+            }
+             
+        }catch (Exception e){
+            System.out.println("Problemas ao Carregar Tipo Imovel! Erro:" + e.getMessage());
+            e.printStackTrace();
+        }
+        return strJson;
+    }
+    
 }  

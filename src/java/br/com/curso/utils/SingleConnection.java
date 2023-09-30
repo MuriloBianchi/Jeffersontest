@@ -6,9 +6,9 @@ import java.sql.DriverManager;
 
 public class SingleConnection {
     private static Connection conexao = null;
-    private static String servidor = "jdbc:postgresql://localhost:5432/provaJeffinho?autoReconnect=true";
+    private static String servidor = "jdbc:postgresql://localhost:5432/bdprovajefin?autoReconnect=true";
     private static String usuario = "postgres";
-    private static String senha = "admin";
+    private static String senha = "0523";
     
     static {
         try {

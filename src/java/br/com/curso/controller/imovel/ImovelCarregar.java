@@ -35,9 +35,11 @@ public class ImovelCarregar extends HttpServlet {
          response.setContentType("text/html;charset=iso-8859-1");
         int idImovel = Integer.parseInt(request.getParameter("idImovel"));      
         try { 
-            GenericDAO dao = new ImovelDAO();
-            request.setAttribute("imovel", dao.carregar(idImovel));
-            request.getRequestDispatcher("cadastros/imovel/imovelCadastrar.jsp").forward(request, response);
+            ImovelDAO dao = new ImovelDAO();
+            
+            String Json = dao.carregarJson(idImovel);
+                
+            response.getWriter().write(Json);
         } catch (Exception e){
             System.out.println("Problemas na Servelet carregar imovel! Erro: " + e.getMessage());
             e.printStackTrace();

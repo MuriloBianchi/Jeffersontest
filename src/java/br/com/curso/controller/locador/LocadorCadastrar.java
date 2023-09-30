@@ -37,9 +37,9 @@ public class LocadorCadastrar extends HttpServlet {
         String mensagem = null;
         try {
                 Locador oLocador = new Locador();
-                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocador")));
-                oLocador.setNome(request.getParameter("nome"));
-                oLocador.setCpfCnpj(request.getParameter("cpfCnpj"));
+                oLocador.setIdLocador(Integer.parseInt(request.getParameter("idlocadorC")));
+                oLocador.setNome(request.getParameter("nomeC"));
+                oLocador.setCpfCnpj(request.getParameter("cpfCnpjC"));
                 
                 LocadorDAO dao = new LocadorDAO();
                 

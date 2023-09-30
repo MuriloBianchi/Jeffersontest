@@ -4,8 +4,8 @@
 <jsp:include page="/header.jsp"/>
 <jsp:include page="/menu.jsp"/>
 
-
-<div class="col-md-12 fixed-top" style="height: 175px; background-color: #212529; margin-top: 50px" >
+<form name="TipoImovelCadastrar" action="TipoImovelCadastrar" method="POST">
+<div class="col-md-12 fixed-top" style="height: 205px; background-color: #212529; margin-top: 50px" >
     <div class="row col-md-12" style="margin-top: 15px">
         <label class="col-md-12" style="background-color: #212529; color: white; font-size: 16px">Casdastro De Tipo Imóvel</label>
     </div>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-md-12 row">
         <div class="col-md-4">
-            <input class="form-control" type="text" name="idtipoimovelC" id="idtipoimovelC" 
+            <input class="form-control" type="text" name="idtipoimovelC" id="idtipoimovelC"> 
             value="${tipoImovel.idTipoImovel}" size="100" maxlength="100">
         </div>
         <div class="col-md-8">
@@ -31,14 +31,15 @@
         <div class="col-md-8"></div>
         <div align="right" class="col-md-4">
             <div>
-                <button class="btn btn-success" type="submit" id="submit"onclick="validarCampos()">Incluir</button>
+                <button class="btn btn-success" type="submit" id="cadastrar" onclick="">Incluir</button>
                 <button class="btn btn-success" type="submit" id="submit"onclick="">Alterar</button>
             </div>
         </div>
     </div>
 </div>
+</form>
 
-<div class="col-12 panel-body" style="margin-top: 250px">
+<div class="col-12 panel-body" style="margin-top: 275px">
     <div class="col-md-12 row">
         <div class="col-md-1">
             <label>Id</label>
@@ -71,12 +72,7 @@
         </div>
     </div>
 </div>
-
-<div align="center" style="margin-top: 330px">
-    <buttom href=#">Novo</buttom>
-    <a href="index.jsp">Voltar a pagina Inicial</a>
-</div>
-        
+   
 <script>
    function alterar(id){
     $.ajax({
@@ -94,6 +90,18 @@
                }
     }); 
    }
+   /*
+   function validarCampos(id, descricao){
+        $.ajax({
+           type: 'post',
+           url: 'TipoImovelCadastrar',
+           data:{idTipoImovel: id, descricao: descricao},
+           success:
+                   function (data){
+                       console.log("data");
+                   }
+        }); 
+   }*/
 </script>
     
 <%@ include file="/footer.jsp" %>

@@ -37,17 +37,17 @@ public class ImovelCadastrar extends HttpServlet {
             throws ServletException, IOException {
          response.setContentType("text/html;charset=iso-8859-1");
         String mensagem = null;
-        int idTipoImovel = Integer.parseInt(request.getParameter("idtipoimovel"));
-        int idLocador = Integer.parseInt(request.getParameter("idlocador"));
+        int idTipoImovel = Integer.parseInt(request.getParameter("tipoImovelC"));
+        int idLocador = Integer.parseInt(request.getParameter("locadorC"));
         try {
                 Imovel oImovel = new Imovel();
-                oImovel.setIdImovel(Integer.parseInt(request.getParameter("idimovel")));
-                oImovel.setDescricao(request.getParameter("descricao"));
-                oImovel.setRua(request.getParameter("rua"));
-                oImovel.setNumero(request.getParameter("numero"));
-                oImovel.setBairro(request.getParameter("bairro"));
-                oImovel.setValorAluguel(Conversao.valorDinheiro(request.getParameter("valoraluguel")));
-                oImovel.setTaxaAdministracao(Conversao.valorDinheiro(request.getParameter("taxaadministracao")));
+                oImovel.setIdImovel(Integer.parseInt(request.getParameter("idImovelC")));
+                oImovel.setDescricao(request.getParameter("descricaoC"));
+                oImovel.setRua(request.getParameter("ruaC"));
+                oImovel.setNumero(request.getParameter("numeroC"));
+                oImovel.setBairro(request.getParameter("bairroC"));
+                oImovel.setValorAluguel(Conversao.valorDinheiro(request.getParameter("valorAluguelC")));
+                oImovel.setTaxaAdministracao(Conversao.valorDinheiro(request.getParameter("taxaAdministracaoC")));
                 oImovel.setTipoImovel(new TipoImovel(idTipoImovel,""));
                 oImovel.setLocador(new Locador (idLocador,"",""));
                 ImovelDAO dao = new ImovelDAO();
