@@ -141,7 +141,7 @@
                 <option value="">[Nenhum]</option>
                 <c:forEach var="imovel" items="${imoveis}">
                     <option value="${imovel.idImovel}"
-                            ${contratoLocacao.Imovel.idImovel == Imovel.idImovel ? "selected" : ""}>
+                            ${contratoLocacao.imovel.idImovel == Imovel.idImovel ? "selected" : ""}>
                             ${imovel.descricao} 
                     </option>
                 </c:forEach>
@@ -152,7 +152,7 @@
                 <option value="">[Nenhum]</option>
                 <c:forEach var="locador" items="${locadores}">
                     <option value="${locador.idLocador}" 
-                            ${contratoLocacao.Locador.idLocador == locador.idLocador ? "selected" : ""}>
+                            ${contratoLocacao.locador.idLocador == locador.idLocador ? "selected" : ""}>
                             ${locador.nome}
                     </option>
                 </c:forEach>
@@ -162,8 +162,8 @@
             <select class="form-control"  type="text" name="locatarioC" id="locatarioC">
                 <option value="">[Nenhum]</option>
                 <c:forEach var="locatario" items="${locatarios}">
-                    <option value="${locatario.idLocador}" 
-                            ${contratoLocacao.Locatario.idLocatario == locatario.idLocatario ? "selected" : ""}>
+                    <option value="${locatario.idLocatario}" 
+                            ${contratoLocacao.locatario.idLocatario == locatario.idLocatario ? "selected" : ""}>
                             ${locatario.nome}
                     </option>
                 </c:forEach>
@@ -205,7 +205,7 @@
             <label>Id</label>
         </div>
         <div class="col-md-1">
-            <label></label>
+            <label>S</label>
         </div>
         <div class="col-md-1">
             <label>Rua</label>

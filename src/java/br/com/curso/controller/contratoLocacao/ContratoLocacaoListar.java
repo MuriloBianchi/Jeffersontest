@@ -49,7 +49,7 @@ public class ContratoLocacaoListar extends HttpServlet {
             LocatarioDAO daoLocatario = new LocatarioDAO();
             request.setAttribute("locatarios", daoLocatario.listar());
             
-            /*ParcelaPagarDAO daoParcelaPagar = new ParcelaPagarDAO();
+            ParcelaPagarDAO daoParcelaPagar = new ParcelaPagarDAO();
             request.setAttribute("pacelaspagar", daoParcelaPagar.listar());
             
             ParcelaReceberDAO daoParcelaReceber = new ParcelaReceberDAO();
@@ -59,7 +59,7 @@ public class ContratoLocacaoListar extends HttpServlet {
             request.setAttribute("parcelasdesconto", daoParcelaDesconto.listar());
             
             GenericDAO dao = new ContratoLocacaoDAO();
-            request.setAttribute("contratos", dao.listar());*/
+            request.setAttribute("contratos", dao.listar());
             
             request.getRequestDispatcher("/cadastros/contratoLocacao/contratoLocacao.jsp").forward(request, response);
         }catch (Exception ex){
