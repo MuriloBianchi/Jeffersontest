@@ -204,8 +204,8 @@
         <div class="col-md-1">
             <label>Id</label>
         </div>
-        <div class="col-md-2">
-            <label>Descrição</label>
+        <div class="col-md-1">
+            <label></label>
         </div>
         <div class="col-md-1">
             <label>Rua</label>

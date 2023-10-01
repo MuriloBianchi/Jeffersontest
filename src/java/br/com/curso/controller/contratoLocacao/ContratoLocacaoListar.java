@@ -56,10 +56,11 @@ public class ContratoLocacaoListar extends HttpServlet {
             request.setAttribute("parcelasreceber", daoParcelaReceber.listar());
                         
             ParcelaDescontoDAO daoParcelaDesconto = new ParcelaDescontoDAO();
-            request.setAttribute("parcelasdesconto", daoParcelaDesconto.listar());*/
+            request.setAttribute("parcelasdesconto", daoParcelaDesconto.listar());
             
             GenericDAO dao = new ContratoLocacaoDAO();
-            request.setAttribute("contratos", dao.listar());
+            request.setAttribute("contratos", dao.listar());*/
+            
             request.getRequestDispatcher("/cadastros/contratoLocacao/contratoLocacao.jsp").forward(request, response);
         }catch (Exception ex){
             System.out.println("Problemas no Servelet ao Listar contratos!Erro: "+ ex.getMessage());
