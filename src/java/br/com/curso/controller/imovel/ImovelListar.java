@@ -6,8 +6,9 @@ package br.com.curso.controller.imovel;
 
 import br.com.curso.dao.GenericDAO;
 import br.com.curso.dao.ImovelDAO;
+import br.com.curso.dao.LocadorDAO;
+import br.com.curso.dao.TipoImovelDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,6 +28,13 @@ public class ImovelListar extends HttpServlet {
         try {
             GenericDAO dao = new ImovelDAO();
             request.setAttribute("imoveis", dao.listar());
+            
+            TipoImovelDAO tpDAO = new TipoImovelDAO();
+            request.setAttribute("tipoImoveis", tpDAO.listar());
+                    
+            LocadorDAO lDAO = new LocadorDAO();
+            request.setAttribute("locadores", lDAO.listar());
+            
             request.getRequestDispatcher("/cadastros/imovel/imovel.jsp").forward(request, response);
         }catch (Exception ex){
             System.out.println("Problemas no Servelet ao Listar imovel!Erro: "+ ex.getMessage());

@@ -73,10 +73,10 @@
         <div class="col-md-2">
             <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.tipoImovel.idTipoImovel}"
+                        <c:forEach var="tipoImovel" items="${tipoImoveis}">
+                            <option value="${tipoImovel.idTipoImovel}"
                                     ${imovel.tipoImovel.idTipoImovel == tipoImovel.idTipoImovel ? "selected" : ""}>
-                                    ${imovel.tipoImovel.descricao} 
+                                    ${tipoImovel.descricao} 
                             </option>
                         </c:forEach>
             </select>
@@ -84,10 +84,10 @@
         <div class="col-md-2">
             <select class="form-control"  type="text" name="locadorC" id="locadorC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
+                        <c:forEach var="locador" items="${locadores}">
+                            <option value="${iocador.idLocador}" 
                                     ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
+                                    ${locador.nome}
                             </option>
                         </c:forEach>
             </select>

@@ -6,8 +6,6 @@ import br.com.curso.model.Imovel;
 import br.com.curso.model.Locador;
 import br.com.curso.model.Locatario;
 import br.com.curso.model.ParcelaDesconto;
-import br.com.curso.model.ParcelaPagar;
-import br.com.curso.model.ParcelaReceber;
 import br.com.curso.utils.SingleConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,7 +52,7 @@ public class ContratoLocacaoDAO implements GenericDAO {
          
             
             PreparedStatement stmt = null;
-         String sql = "INSERT INTO CONTRATOLOCACAO (IDCONTRATO, DATACONTRATO, DATAINICIO, DATAFINAL, MESESCONTRATO, DIARECEBIMENTO, DIAPAGAMENTO, VALORTOTALCONTRATO, VALORRECEBIDO, VALORDESCONTOS, VALORPAGO, VALORJUROSMULTARECEBIDO, VALORJUROSMULTAPAGO, SALDOCONTRATO, IDIMOVEL, IDLOCADOR, IDLOCATARIO, NROPARCELA, IDPARCELAPAGAR, IDPARCELADESCONTO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+         String sql = "INSERT INTO CONTRATOLOCACAO (IDCONTRATO, DATACONTRATO, DATAINICIO, DATAFINAL, MESESCONTRATO, DIARECEBIMENTO, DIAPAGAMENTO, VALORTOTALCONTRATO, VALORRECEBIDO, VALORDESCONTOS, VALORPAGO, VALORJUROSMULTARECEBIDO, VALORJUROSMULTAPAGO, SALDOCONTRATO, IDIMOVEL, IDLOCADOR, IDLOCATARIO, IDPARCELADESCONTO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
          try{
              stmt = conexao.prepareCall(sql);
              stmt.setDate(1, new java.sql.Date(oContratoLocacao.getDataContrato().getTime()));
@@ -73,8 +71,6 @@ public class ContratoLocacaoDAO implements GenericDAO {
             stmt.setInt(14, oContratoLocacao.getIdImovel().getIdImovel());
             stmt.setInt(15, oContratoLocacao.getIdLocador().getIdLocador());
             stmt.setInt(16, oContratoLocacao.getIdLocatario().getIdLocatario());
-            stmt.setInt(17, oContratoLocacao.getNroParcela().getNroParcela());
-            stmt.setInt(18, oContratoLocacao.getIdParcelaPagar().getIdParcelaPagar());
             stmt.setInt(19, oContratoLocacao.getIdParcelaDesconto().getIdParcelaDesconto());
              stmt.execute();
             conexao.commit();
@@ -115,8 +111,6 @@ public class ContratoLocacaoDAO implements GenericDAO {
             stmt.setInt(14, oContratoLocacao.getIdImovel().getIdImovel());
             stmt.setInt(15, oContratoLocacao.getIdLocador().getIdLocador());
             stmt.setInt(16, oContratoLocacao.getIdLocatario().getIdLocatario());
-            stmt.setInt(17, oContratoLocacao.getNroParcela().getNroParcela());
-            stmt.setInt(18, oContratoLocacao.getIdParcelaPagar().getIdParcelaPagar());
             stmt.setInt(19, oContratoLocacao.getIdParcelaDesconto().getIdParcelaDesconto());
             stmt.setInt(20, oContratoLocacao.getIdContrato());
             stmt.execute();
@@ -195,12 +189,6 @@ public class ContratoLocacaoDAO implements GenericDAO {
                 LocatarioDAO oLocatarioDAO = new LocatarioDAO();
                 oContratoLocacao.setIdLocatario((Locatario) oLocatarioDAO.carregar(rs.getInt("IDLOCATARIO")));
                 
-                ParcelaReceberDAO oParcelaReceberDAO = new ParcelaReceberDAO();
-                oContratoLocacao.setNroParcela((ParcelaReceber) oParcelaReceberDAO.carregar(rs.getInt("NROPARCELA")));
-                
-                ParcelaPagarDAO oParcelaPagarDAO = new ParcelaPagarDAO();
-                oContratoLocacao.setIdParcelaPagar((ParcelaPagar) oParcelaPagarDAO.carregar(rs.getInt("IDPARCELAPAGAR")));
-                
                 ParcelaDescontoDAO oParcelaDescontoDAO = new ParcelaDescontoDAO();
                 oContratoLocacao.setIdParcelaDesconto((ParcelaDesconto) oParcelaDescontoDAO.carregar(rs.getInt("IDPARCElADESCONTO")));
             }
@@ -263,24 +251,6 @@ public class ContratoLocacaoDAO implements GenericDAO {
                     ex.printStackTrace();
                 }
                 oContratoLocacao.setIdLocatario((Locatario) oLocatarioDAO.carregar(rs.getInt("IDLOCATARIO")));
-                
-                ParcelaReceberDAO oParcelaReceberDAO = null;
-                try{
-                    oParcelaReceberDAO = new ParcelaReceberDAO();
-                }catch(Exception ex){
-                    System.out.println("Erro ao carregar Parcela Receber!" +ex.getMessage());
-                    ex.printStackTrace();
-                }
-                oContratoLocacao.setNroParcela((ParcelaReceber) oParcelaReceberDAO.carregar(rs.getInt("NROPARCELA")));
-                
-                ParcelaPagarDAO oParcelaPagarDAO = new ParcelaPagarDAO();
-                try{
-                    oParcelaPagarDAO = new ParcelaPagarDAO();
-                }catch(Exception ex){
-                    System.out.println("Erro ao carregar Parcela Pagar!" + ex.getMessage());
-                    ex.printStackTrace();
-                }
-                 oContratoLocacao.setIdParcelaPagar((ParcelaPagar) oParcelaPagarDAO.carregar(rs.getInt("IDPARCELAPAGAR")));
                  
                  ParcelaDescontoDAO oParcelaDescontoDAO = null;
                  try{

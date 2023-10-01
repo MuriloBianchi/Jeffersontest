@@ -57,7 +57,7 @@
             break;
             
             case "ContratoLocacao":
-                window.location.href = "./cadastros/contratoLocacao/contratoLocacao.jsp";
+                window.location.href = "ContratoLocacaoListar";
             break;
             
             case "TipoImvovel":

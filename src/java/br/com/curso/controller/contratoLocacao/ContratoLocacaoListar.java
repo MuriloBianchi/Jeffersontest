@@ -6,6 +6,9 @@ package br.com.curso.controller.contratoLocacao;
 
 import br.com.curso.dao.ContratoLocacaoDAO;
 import br.com.curso.dao.GenericDAO;
+import br.com.curso.dao.ImovelDAO;
+import br.com.curso.dao.LocadorDAO;
+import br.com.curso.dao.LocatarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,7 +39,19 @@ public class ContratoLocacaoListar extends HttpServlet {
         try {
             GenericDAO dao = new ContratoLocacaoDAO();
             request.setAttribute("contratos", dao.listar());
-            request.getRequestDispatcher("/cadastros/contrato/contratos.jsp").forward(request, response);
+            
+            ImovelDAO iDAO = new ImovelDAO();
+            request.setAttribute("imoveis", iDAO.listar());
+            
+             LocadorDAO lDAO = new LocadorDAO();
+            request.setAttribute("locadores", lDAO.listar());
+            
+            LocatarioDAO loDAO = new LocatarioDAO();
+            request.setAttribute("locatarios", loDAO.listar());
+            
+
+            
+            request.getRequestDispatcher("/cadastros/contratoLocacao/contratoLocacao.jsp").forward(request, response);
         }catch (Exception ex){
             System.out.println("Problemas no Servelet ao Listar contratos!Erro: "+ ex.getMessage());
             ex.printStackTrace();
