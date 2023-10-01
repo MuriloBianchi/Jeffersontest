@@ -137,69 +137,54 @@
     </div>
     <div class="col-md-12 row" style="margin-top: 10px">
         <div class="col-md-2">
+            <select class="form-control"  type="text" name="ImovelC" id="ImovelC">
+                <option value="">[Nenhum]</option>
+                <c:forEach var="imovel" items="${imoveis}">
+                    <option value="${imovel.idImovel}"
+                            ${imovel.idImovel == Imovel.idImovel ? "selected" : ""}>
+                            ${imovel.descricao} 
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control"  type="text" name="locadorC" id="locadorC">
+                <option value="">[Nenhum]</option>
+                <c:forEach var="locador" items="${locadores}">
+                    <option value="${locador.idLocador}" 
+                            ${locador.idLocador == locador.idLocador ? "selected" : ""}>
+                            ${locador.nome}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <select class="form-control"  type="text" name="locatarioC" id="locatarioC">
+                <option value="">[Nenhum]</option>
+                <c:forEach var="locatario" items="${locatarios}">
+                    <option value="${locatario.idLocador}" 
+                            ${locatario.idLocatario == locatario.idLocatario ? "selected" : ""}>
+                            ${locatario.nome}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+        <div class="col-md-2">
             <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.tipoImovel.idTipoImovel}"
-                                    ${imovel.tipoImovel.idTipoImovel == tipoImovel.idTipoImovel ? "selected" : ""}>
-                                    ${imovel.tipoImovel.descricao} 
-                            </option>
-                        </c:forEach>
+                
             </select>
         </div>
         <div class="col-md-2">
             <select class="form-control"  type="text" name="locadorC" id="locadorC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
+                
             </select>
         </div>
         <div class="col-md-2">
             <select class="form-control"  type="text" name="locadorC" id="locadorC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
-                <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.tipoImovel.idTipoImovel}"
-                                    ${imovel.tipoImovel.idTipoImovel == tipoImovel.idTipoImovel ? "selected" : ""}>
-                                    ${imovel.tipoImovel.descricao} 
-                            </option>
-                        </c:forEach>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
-                <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
-                <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
+                
             </select>
         </div>
         <div class="col-md-12 row" style="margin-top: 25px">
@@ -214,7 +199,7 @@
 </div>
 </form>
 
-<div class="col-13 panel-body" style="margin-top: 280px">
+<!--<div class="col-13 panel-body" style="margin-top: 280px">
     <div class="col-md-13 row">
         <div class="col-md-1">
             <label>Id</label>
@@ -288,7 +273,7 @@
         </div>
     </div>
 </div>
-
+-->
 <script>
    function alterar(id){
        console.log(id);

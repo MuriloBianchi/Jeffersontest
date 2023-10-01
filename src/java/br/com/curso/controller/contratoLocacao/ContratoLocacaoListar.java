@@ -5,6 +5,12 @@
 package br.com.curso.controller.contratoLocacao;
 
 import br.com.curso.dao.ContratoLocacaoDAO;
+import br.com.curso.dao.ImovelDAO;
+import br.com.curso.dao.LocadorDAO;
+import br.com.curso.dao.LocatarioDAO;
+import br.com.curso.dao.ParcelaPagarDAO;
+import br.com.curso.dao.ParcelaDescontoDAO;
+import br.com.curso.dao.ParcelaReceberDAO;
 import br.com.curso.dao.GenericDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,9 +40,27 @@ public class ContratoLocacaoListar extends HttpServlet {
             throws ServletException, IOException {
          response.setContentType("text/html;charset=iso-8859-1");
         try {
+            ImovelDAO daoImovel = new ImovelDAO();
+            request.setAttribute("imoveis", daoImovel.listar());
+            
+            LocadorDAO daoLocador = new LocadorDAO();
+            request.setAttribute("locadores", daoLocador.listar());
+            
+            LocatarioDAO daoLocatario = new LocatarioDAO();
+            request.setAttribute("locatarios", daoLocatario.listar());
+            
+            /*ParcelaPagarDAO daoParcelaPagar = new ParcelaPagarDAO();
+            request.setAttribute("pacelaspagar", daoParcelaPagar.listar());
+            
+            ParcelaReceberDAO daoParcelaReceber = new ParcelaReceberDAO();
+            request.setAttribute("parcelasreceber", daoParcelaReceber.listar());
+                        
+            ParcelaDescontoDAO daoParcelaDesconto = new ParcelaDescontoDAO();
+            request.setAttribute("parcelasdesconto", daoParcelaDesconto.listar());*/
+            
             GenericDAO dao = new ContratoLocacaoDAO();
             request.setAttribute("contratos", dao.listar());
-            request.getRequestDispatcher("/cadastros/contrato/contratos.jsp").forward(request, response);
+            request.getRequestDispatcher("/cadastros/contratoLocacao/contratoLocacao.jsp").forward(request, response);
         }catch (Exception ex){
             System.out.println("Problemas no Servelet ao Listar contratos!Erro: "+ ex.getMessage());
             ex.printStackTrace();
