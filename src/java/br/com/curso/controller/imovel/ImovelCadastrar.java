@@ -60,7 +60,7 @@ public class ImovelCadastrar extends HttpServlet {
                 if(dao.cadastrar(oImovel)){
                     request.getRequestDispatcher("ImovelListar").forward(request, response);
                 } else{
-                    response.getWriter().write("0");
+                    request.getRequestDispatcher("ImovelListar").forward(request, response);
                 }
         } catch (Exception e){
             System.out.println("Problemas no servelet Cadastrar Imovel!Erro:" + e.getMessage()); 

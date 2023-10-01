@@ -139,73 +139,76 @@
         <div class="col-md-2">
             <select class="form-control"  type="text" name="ImovelC" id="ImovelC">
                 <option value="">[Nenhum]</option>
+<<<<<<< HEAD
                         <c:forEach var="imovel" items="${imoveis}">
                             <option value="${imovel.idImovel}"
                                     ${contratoLocacao.imovel.idImovel == imovel.idImovel ? "selected" : ""}>
                                     ${imovel.descricao} 
                             </option>
                         </c:forEach>
+=======
+                <c:forEach var="imovel" items="${imoveis}">
+                    <option value="${imovel.idImovel}"
+                            ${contratoLocacao.imovel.idImovel == Imovel.idImovel ? "selected" : ""}>
+                            ${imovel.descricao} 
+                    </option>
+                </c:forEach>
+>>>>>>> fee781376e09ccf6d314063395ff179584f03514
             </select>
         </div>
         <div class="col-md-2">
             <select class="form-control"  type="text" name="locadorC" id="locadorC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
+                <c:forEach var="locador" items="${locadores}">
+                    <option value="${locador.idLocador}" 
+                            ${contratoLocacao.locador.idLocador == locador.idLocador ? "selected" : ""}>
+                            ${locador.nome}
+                    </option>
+                </c:forEach>
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
+            <select class="form-control"  type="text" name="locatarioC" id="locatarioC">
                 <option value="">[Nenhum]</option>
+<<<<<<< HEAD
                         <c:forEach var="locatario" items="${locatarios}">
                             <option value="${locatario.idLocador}" 
                                     ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
                                     ${imovel.locador.nome}
                             </option>
                         </c:forEach>
+=======
+                <c:forEach var="locatario" items="${locatarios}">
+                    <option value="${locatario.idLocatario}" 
+                            ${contratoLocacao.locatario.idLocatario == locatario.idLocatario ? "selected" : ""}>
+                            ${locatario.nome}
+                    </option>
+                </c:forEach>
+>>>>>>> fee781376e09ccf6d314063395ff179584f03514
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
+            <select class="form-control"  type="text" name="ParcelaC" id="ParcelaC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.tipoImovel.idTipoImovel}"
-                                    ${imovel.tipoImovel.idTipoImovel == tipoImovel.idTipoImovel ? "selected" : ""}>
-                                    ${imovel.tipoImovel.descricao} 
-                            </option>
-                        </c:forEach>
+                
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
+            <select class="form-control"  type="text" name="ParcelaPagarC" id="ParcelaPagarC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
+                
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
+            <select class="form-control"  type="text" name="ParcelaDescontoC" id="ParcelaDescontoC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
-                                    ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
-                            </option>
-                        </c:forEach>
+                
             </select>
         </div>
         <div class="col-md-12 row" style="margin-top: 25px">
             <div align="right" class="col-md-12">
             <div>
-                <button class="btn btn-success" type="submit" id="submit"onclick="validarCampos()">Incluir</button>
+                <button class="btn btn-success" type="submit" id="submit">Incluir</button>
                 <button class="btn btn-success" type="submit" id="submit"onclick="">Alterar</button>
             </div>
         </div>
@@ -214,77 +217,137 @@
 </div>
 </form>
 
-<div class="col-13 panel-body" style="margin-top: 280px">
+<div class="col-13 panel-body" style="margin-top: 480px">
     <div class="col-md-13 row">
         <div class="col-md-1">
             <label>Id</label>
         </div>
-        <div class="col-md-2">
-            <label>Descrição</label>
+        <div class="col-md-1">
+            <label>Data Contrato</label>
         </div>
         <div class="col-md-1">
-            <label>Rua</label>
+            <label>Data Inicio</label>
         </div>
         <div class="col-md-1">
-            <label>Numero</label>
+            <label>Data Final</label>
         </div>
         <div class="col-md-1">
-            <label>Bairro</label>
+            <label>Meses Contrato</label>
         </div>
         <div class="col-md-1">
-            <label>Valor Aluguel</label>
+            <label>Dia Recebimento</label>
         </div>
         <div class="col-md-1">
-            <label>Taxa Administracao</label>
+            <label>Dia Pagamento</label>
         </div>
         <div class="col-md-1">
-            <label>Tipo Imovel</label>
+            <label>Valor Total</label>
+        </div>
+        <div class="col-md-1">
+            <label>Valor Recebido</label>
+        </div>
+        <div class="col-md-1">
+            <label>Valor Descontos</label>
+        </div>
+        <div class="col-md-1">
+            <label>Valor Pagos</label>
+        </div>
+        <div class="col-md-1">
+            <label>Juros Recebido</label>
+        </div>
+        <div class="col-md-1">
+            <label>Juros Pago</label>
+        </div>
+        <div class="col-md-1">
+            <label>Saldo Contrato</label>
+        </div>
+        <div class="col-md-1">
+            <label>Imovel</label>
         </div>
         <div class="col-md-1">
             <label>Locador</label>
         </div>
+        <div class="col-md-1">
+            <label>Locatario</label>
+        </div>
         <div class="col-md-12 row">
-            <c:forEach var="imovel" items="${imoveis}" >
+            <!--<c:forEach var="contrato" items="${contratos}" >
                 <div class="col-md-13 row" style="margin-top: 10px">
                     <div class="col-md-1">
-                        <a align="left" id="idImovel">${imovel.idImovel}</a>
-                    </div>
-                    <div class="col-md-2">
-                        <a align="left" id="descricao">${imovel.descricao}</a>
+                        <a align="left" id="idImovel">${contrato.idContrato}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="rua">${imovel.rua}</a>
+                        <a align="left" id="descricao">${contrato.dataContrato}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="numero">${imovel.numero}</a>
+                        <a align="left" id="rua">${contrato.dataInicio}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="bairro">${imovel.bairro}</a>
+                        <a align="left" id="numero">${contrato.dataFinal}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="valorAluguel">${imovel.valorAluguel}</a>
+                        <a align="left" id="bairro">${contrato.dataFinal}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="taxaAdministracao">${imovel.taxaAdministracao}</a>
+                        <a align="left" id="valorAluguel">${contrato.mesesContrato}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="tipoImovelDescricao">${imovel.tipoImovel.descricao}</a>
+                        <a align="left" id="taxaAdministracao">${contrato.diaRecebimento}</a>
                     </div>
                     <div class="col-md-1">
-                        <a align="left" id="locadorNome">${imovel.locador.nome}</a>
+                        <a align="left" id="tipoImovelDescricao">${contrato.diaPagamento}</a>
                     </div>
                     <div class="col-md-1">
-                        <a href="#" id="alterar" title="Alterar" onclick="alterar(${imovel.idImovel})" value="${imovel.idImovel}">
+                        <a align="left" id="taxaAdministracao">${contrato.valorTotalRecebido}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="tipoImovelDescricao">${contrato.valorRecebido}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="taxaAdministracao">${contrato.valorDescontos}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="tipoImovelDescricao">${contrato.valorPago}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="tipoImovelDescricao">${contrato.valorJurosMultaRecebido}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="tipoImovelDescricao">${contrato.valorJurosMultaPago}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="tipoImovelDescricao">${contrato.saldoContrato}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="locadorNome">${contrato.imovel.descricao}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="locadorNome">${contrato.locador.nome}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="locadorNome">${contrato.locatario.nome}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="locadorNome">${contrato.parcelaReceber.nroParcela}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="locadorNome">${contrato.pacelaPagar.idParcelaPagar}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a align="left" id="locadorNome">${contrato.parcelaDesconto.idPArcelaDesconto}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="#" id="alterar" title="Alterar" onclick="alterar(${contrato.idContrato})" value="${contrato.idContrato}">
                             <button class="btn btn-group-lg btn-success"/>Alterar</button>
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${imovel.idImovel})">
+                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${contrato.idContrato})">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>
                 </div>
-            </c:forEach>
+            </c:forEach>-->
         </div>
     </div>
 </div>

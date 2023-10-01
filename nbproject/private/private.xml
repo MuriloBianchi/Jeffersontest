@@ -12,11 +12,18 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/dao/ContratoLocacaoDAO.java</file>
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/model/ContratoLocacao.java</file>
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/model/Locatario.java</file>
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/web/cadastros/contratoLocacao/contratoLocacao.jsp</file>
             <file>file:/C:/Users/muril/OneDrive/Documentos/NetBeansProjects/teste/src/java/br/com/curso/controller/contratoLocacao/ContratoLocacaoListar.java</file>
+=======
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/src/java/br/com/curso/controller/imovel/ImovelExcluir.java</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/web/cadastros/imovel/imovel.jsp</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/src/java/br/com/curso/dao/ImovelDAO.java</file>
+            <file>file:/C:/Users/milto/OneDrive/Documentos/NetBeansProjects/Prova/src/java/br/com/curso/controller/imovel/ImovelCadastrar.java</file>
+>>>>>>> fee781376e09ccf6d314063395ff179584f03514
         </group>
     </open-files>
 </project-private>
