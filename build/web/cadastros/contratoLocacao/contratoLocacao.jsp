@@ -141,7 +141,7 @@
                 <option value="">[Nenhum]</option>
                 <c:forEach var="imovel" items="${imoveis}">
                     <option value="${imovel.idImovel}"
-                            ${imovel.idImovel == Imovel.idImovel ? "selected" : ""}>
+                            ${contratoLocacao.Imovel.idImovel == Imovel.idImovel ? "selected" : ""}>
                             ${imovel.descricao} 
                     </option>
                 </c:forEach>
@@ -152,7 +152,7 @@
                 <option value="">[Nenhum]</option>
                 <c:forEach var="locador" items="${locadores}">
                     <option value="${locador.idLocador}" 
-                            ${locador.idLocador == locador.idLocador ? "selected" : ""}>
+                            ${contratoLocacao.Locador.idLocador == locador.idLocador ? "selected" : ""}>
                             ${locador.nome}
                     </option>
                 </c:forEach>
@@ -163,26 +163,26 @@
                 <option value="">[Nenhum]</option>
                 <c:forEach var="locatario" items="${locatarios}">
                     <option value="${locatario.idLocador}" 
-                            ${locatario.idLocatario == locatario.idLocatario ? "selected" : ""}>
+                            ${contratoLocacao.Locatario.idLocatario == locatario.idLocatario ? "selected" : ""}>
                             ${locatario.nome}
                     </option>
                 </c:forEach>
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
+            <select class="form-control"  type="text" name="ParcelaC" id="ParcelaC">
                 <option value="">[Nenhum]</option>
                 
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
+            <select class="form-control"  type="text" name="ParcelaPagarC" id="ParcelaPagarC">
                 <option value="">[Nenhum]</option>
                 
             </select>
         </div>
         <div class="col-md-2">
-            <select class="form-control"  type="text" name="locadorC" id="locadorC">
+            <select class="form-control"  type="text" name="ParcelaDescontoC" id="ParcelaDescontoC">
                 <option value="">[Nenhum]</option>
                 
             </select>
@@ -190,7 +190,7 @@
         <div class="col-md-12 row" style="margin-top: 25px">
             <div align="right" class="col-md-12">
             <div>
-                <button class="btn btn-success" type="submit" id="submit"onclick="validarCampos()">Incluir</button>
+                <button class="btn btn-success" type="submit" id="submit">Incluir</button>
                 <button class="btn btn-success" type="submit" id="submit"onclick="">Alterar</button>
             </div>
         </div>
