@@ -16,7 +16,7 @@ import br.com.curso.dao.ImovelDAO;
 import br.com.curso.dao.LocadorDAO;
 import br.com.curso.dao.LocatarioDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,20 +43,33 @@ public class ContratoLocacaoListar extends HttpServlet {
             throws ServletException, IOException {
          response.setContentType("text/html;charset=iso-8859-1");
         try {
-            ImovelDAO daoImovel = new ImovelDAO();
-            request.setAttribute("imoveis", daoImovel.listar());
             
-            LocadorDAO daoLocador = new LocadorDAO();
-            request.setAttribute("locadores", daoLocador.listar());
+            try{
+                 ImovelDAO daoImovel = new ImovelDAO();
+                 request.setAttribute("imoveis", daoImovel.listar());
+            }catch(Exception ex){
+                System.out.println("Erro ao Carregar Imovel! Erro: " + ex.getMessage());
+                ex.printStackTrace();
+            }
+           
             
-            LocatarioDAO daoLocatario = new LocatarioDAO();
-            request.setAttribute("locatarios", daoLocatario.listar());
+            try{
+                 LocadorDAO daoLocador = new LocadorDAO();
+                request.setAttribute("locadores", daoLocador.listar());
+            }catch(Exception ex){
+                System.out.println("Erro ao Carregar Locador! Erro: "  + ex.getMessage());
+                ex.printStackTrace();
+            }
+           
             
-            ParcelaPagarDAO daoParcelaPagar = new ParcelaPagarDAO();
-            request.setAttribute("pacelaspagar", daoParcelaPagar.listar());
+            try{
+                LocatarioDAO daoLocatario = new LocatarioDAO();
+                 request.setAttribute("locatarios", daoLocatario.listar());
+            }catch(Exception ex){
+                System.out.println("Erro ao Carregar Locatario! Erro: " + ex.getMessage());
+                ex.printStackTrace();
+            }
             
-            ParcelaReceberDAO daoParcelaReceber = new ParcelaReceberDAO();
-            request.setAttribute("parcelasreceber", daoParcelaReceber.listar());
                         
             ParcelaDescontoDAO daoParcelaDesconto = new ParcelaDescontoDAO();
             request.setAttribute("parcelasdesconto", daoParcelaDesconto.listar());
@@ -64,20 +77,6 @@ public class ContratoLocacaoListar extends HttpServlet {
             GenericDAO dao = new ContratoLocacaoDAO();
             request.setAttribute("contratos", dao.listar());
             
-<<<<<<< HEAD
-            ImovelDAO iDAO = new ImovelDAO();
-            request.setAttribute("imoveis", iDAO.listar());
-            
-             LocadorDAO lDAO = new LocadorDAO();
-            request.setAttribute("locadores", lDAO.listar());
-            
-            LocatarioDAO loDAO = new LocatarioDAO();
-            request.setAttribute("locatarios", loDAO.listar());
-            
-
-            
-=======
->>>>>>> fee781376e09ccf6d314063395ff179584f03514
             request.getRequestDispatcher("/cadastros/contratoLocacao/contratoLocacao.jsp").forward(request, response);
         }catch (Exception ex){
             System.out.println("Problemas no Servelet ao Listar contratos!Erro: "+ ex.getMessage());

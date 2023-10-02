@@ -188,7 +188,7 @@
                function (data){
                    console.log(data);
                    const Imovel = JSON.parse(data);
-                   console.log(Imovel.descricao);
+                   console.log(Imovel.idLocador);
                    $("#idImovelC").val(Imovel.idImovel);
                    $("#descricaoC").val(Imovel.descricao);
                    $("#ruaC").val(Imovel.rua);

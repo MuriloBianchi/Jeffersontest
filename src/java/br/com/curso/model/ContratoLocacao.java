@@ -227,9 +227,9 @@ public class ContratoLocacao {
         int anos = cal2.get(Calendar.YEAR) - cal1.get(Calendar.YEAR);
         int meses = cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH);
 
-        int mesesTotais = (anos * 12) + meses;
-
-        return mesesTotais;
+        this.mesesContrato = (anos * 12) + meses;
+        
+        return this.mesesContrato;
     }
            
     

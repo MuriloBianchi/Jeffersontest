@@ -17,6 +17,10 @@ public class Locatario {
         this.cpfCnpj = cpfCnpj;
     }
 
+    public Locatario(int idLocatario) {
+        this.idLocatario = idLocatario;
+    }
+
     public int getIdLocatario() {
         return idLocatario;
     }
