@@ -33,7 +33,7 @@ public class TipoImovelDAO implements GenericDAO {
     public Boolean inserir(Object objeto) {
         TipoImovel oTipoImovel = (TipoImovel) objeto;
         PreparedStatement stmt = null;
-        String sql = "Insert into TIPOIMOVEL (DESCRICAO) values (?)";
+        String sql = "Insert into TIPOIMOVEL (idTipoImovel,DESCRICAO) values (nextVal('sq_contrato'),?)";
         try{
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, oTipoImovel.getDescricao());

@@ -20,7 +20,7 @@
     <div class="col-md-12 row">
         <div class="col-md-4">
             <input class="form-control" type="text" name="idtipodescontoC" id="idtipodescontoC" 
-            value="${tipoDesconto.idTipoDesconto}" size="100" maxlength="100" >
+            value="${tipoDesconto.idTipoDesconto}" size="100" maxlength="100">
         </div>
         <div class="col-md-8">
             <input class="form-control" type="text" name="descricaoC" id="descricaoC" 

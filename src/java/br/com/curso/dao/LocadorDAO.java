@@ -41,7 +41,7 @@ public class LocadorDAO implements GenericDAO{
     public Boolean inserir(Object objeto) {
       Locador oLocador = (Locador)objeto;
         PreparedStatement stmt = null;
-        String sql = "Insert into Locador ( nome, cpfcnpj) values (?,?)";
+        String sql = "Insert into Locador (idLocador,nome, cpfcnpj) values (nextVal('sq_contrato'),?,?)";
         try{
           stmt = conexao.prepareStatement(sql);
           stmt.setString(1, oLocador.getNome());

@@ -40,7 +40,7 @@ public class LocatarioDAO implements GenericDAO {
     public Boolean inserir(Object objeto) {
       Locatario oLocatario = (Locatario)objeto;
         PreparedStatement stmt = null;
-        String sql = "Insert into Locatario ( nome, cpfcnpj) values (?,?)";
+        String sql = "Insert into Locatario (idLocatario,nome, cpfcnpj) values (nextVal('sq_contrato'),?,?)";
         try{
           stmt = conexao.prepareStatement(sql);
           stmt.setString(1, oLocatario.getNome());

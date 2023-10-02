@@ -41,7 +41,7 @@ public class TipoDescontoDAO implements GenericDAO {
     public Boolean inserir(Object objeto) {
       TipoDesconto oTipoDesconto = (TipoDesconto)objeto;
         PreparedStatement stmt = null;
-        String sql = "Insert into TipoDesconto (descricao) values (?)";
+        String sql = "Insert into TipoDesconto (idTipoDesconto,descricao) values (nextVal('sq_contrato'),?)";
         try{
           stmt = conexao.prepareStatement(sql);
           stmt.setString(1, oTipoDesconto.getDescricao());

@@ -137,7 +137,7 @@
                     <div class="col-md-1">
                         <a align="left" id="idImovel">${imovel.idImovel}</a>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <a align="left" id="descricao">${imovel.descricao}</a>
                     </div>
                     <div class="col-md-1">
@@ -167,7 +167,7 @@
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${imovel.idImovel})">
+                        <a href="${pageContext.request.contextPath}/ImovelExcluir?idImovel=${imovel.idImovel}" id="deletar" title="Excluir">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>
@@ -201,18 +201,7 @@
                }
     }); 
    }
-   /*
-   function validarCampos(id, descricao){
-        $.ajax({
-           type: 'post',
-           url: 'TipoImovelCadastrar',
-           data:{idTipoImovel: id, descricao: descricao},
-           success:
-                   function (data){
-                       console.log("data");
-                   }
-        }); 
-   }*/
+  
 </script>
 
 <%@ include file="/footer.jsp" %>
