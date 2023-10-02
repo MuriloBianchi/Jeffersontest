@@ -1,6 +1,7 @@
 package br.com.curso.model;
 
 import br.com.curso.utils.Conversao;
+import java.util.Calendar;
 import java.util.Date;
 
 public class ContratoLocacao {
@@ -21,8 +22,6 @@ public class ContratoLocacao {
     private Imovel idImovel;
     private Locador idLocador;
     private Locatario idLocatario;
-    private ParcelaReceber nroParcela;
-    private ParcelaPagar idParcelaPagar;
     private ParcelaDesconto idParcelaDesconto;
     
 
@@ -44,12 +43,10 @@ public class ContratoLocacao {
         idImovel = new Imovel();
         idLocador = new Locador();
         idLocatario = new Locatario();
-        nroParcela = new ParcelaReceber();
-        idParcelaPagar = new ParcelaPagar();
         idParcelaDesconto = new ParcelaDesconto();
     }
 
-    public ContratoLocacao(int idContrato, Date dataContrato, Date dataInicio, Date dataFinal, int mesesContrato, int diaRecebimento, int diaPagamento, double valorTotalContrato, double valorRecebido, double valorDescontos, double valorPago, double valorJurosMultaRecebido, double valorJurosMultaPago, double saldoContrato, Imovel idImovel, Locador idLocador, Locatario idLocatario ,ParcelaReceber nroParcela, ParcelaPagar idParcelaPagar, ParcelaDesconto idParcelaDesconto) {
+    public ContratoLocacao(int idContrato, Date dataContrato, Date dataInicio, Date dataFinal, int mesesContrato, int diaRecebimento, int diaPagamento, double valorTotalContrato, double valorRecebido, double valorDescontos, double valorPago, double valorJurosMultaRecebido, double valorJurosMultaPago, double saldoContrato, Imovel idImovel, Locador idLocador, Locatario idLocatario, ParcelaDesconto idParcelaDesconto) {
         this.idContrato = idContrato;
         this.dataContrato = dataContrato;
         this.dataInicio = dataInicio;
@@ -67,8 +64,6 @@ public class ContratoLocacao {
         this.idImovel = idImovel;
         this.idLocador = idLocador;
         this.idLocatario = idLocatario;
-        this.nroParcela = nroParcela;
-        this.idParcelaPagar = idParcelaPagar;
         this.idParcelaDesconto = idParcelaDesconto;
     }
 
@@ -208,22 +203,6 @@ public class ContratoLocacao {
         this.idLocatario = idLocatario;
     }
 
-    public ParcelaReceber getNroParcela() {
-        return nroParcela;
-    }
-
-    public void setNroParcela(ParcelaReceber nroParcela) {
-        this.nroParcela = nroParcela;
-    }
-
-    public ParcelaPagar getIdParcelaPagar() {
-        return idParcelaPagar;
-    }
-
-    public void setIdParcelaPagar(ParcelaPagar idParcelaPagar) {
-        this.idParcelaPagar = idParcelaPagar;
-    }
-
     public ParcelaDesconto getIdParcelaDesconto() {
         return idParcelaDesconto;
     }
@@ -231,7 +210,27 @@ public class ContratoLocacao {
     public void setIdParcelaDesconto(ParcelaDesconto idParcelaDesconto) {
         this.idParcelaDesconto = idParcelaDesconto;
     }
-
     
+
+    public int GetMeses(){
+        return CalculaMeses();
+    }
+    
+    private int CalculaMeses(){
+        
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+
+        cal1.setTime(this.dataInicio);
+        cal2.setTime(this.dataFinal);
+
+        int anos = cal2.get(Calendar.YEAR) - cal1.get(Calendar.YEAR);
+        int meses = cal2.get(Calendar.MONTH) - cal1.get(Calendar.MONTH);
+
+        this.mesesContrato = (anos * 12) + meses;
+        
+        return this.mesesContrato;
+    }
+           
     
 }

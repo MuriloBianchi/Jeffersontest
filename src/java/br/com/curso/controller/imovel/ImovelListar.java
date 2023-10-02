@@ -6,8 +6,9 @@ package br.com.curso.controller.imovel;
 
 import br.com.curso.dao.GenericDAO;
 import br.com.curso.dao.ImovelDAO;
+import br.com.curso.dao.LocadorDAO;
+import br.com.curso.dao.TipoImovelDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,15 +22,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ImovelListar", urlPatterns = {"/ImovelListar"})
 public class ImovelListar extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             response.setContentType("text/html;charset=iso-8859-1");
@@ -37,6 +29,15 @@ public class ImovelListar extends HttpServlet {
             GenericDAO dao = new ImovelDAO();
             request.setAttribute("imoveis", dao.listar());
             
+<<<<<<< HEAD
+=======
+            TipoImovelDAO tpDAO = new TipoImovelDAO();
+            request.setAttribute("tipoImoveis", tpDAO.listar());
+                    
+            LocadorDAO lDAO = new LocadorDAO();
+            request.setAttribute("locadores", lDAO.listar());
+            
+>>>>>>> 389659c41138f3597b6f102ff445d13ee79a4f01
             request.getRequestDispatcher("/cadastros/imovel/imovel.jsp").forward(request, response);
         }catch (Exception ex){
             System.out.println("Problemas no Servelet ao Listar imovel!Erro: "+ ex.getMessage());

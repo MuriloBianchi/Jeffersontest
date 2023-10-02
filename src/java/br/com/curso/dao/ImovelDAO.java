@@ -43,7 +43,7 @@ public class ImovelDAO implements GenericDAO {
     public Boolean inserir(Object objeto) {
         Imovel oImovel = (Imovel)objeto;
         PreparedStatement stmt = null;
-        String sql = "Insert into imovel (descricao ,rua, numero, bairro, valoraluguel, taxaadministracao, idtipoimovel, idlocador) values (?,?,?,?,?,?,?,?)";
+        String sql = "Insert into imovel (idimovel ,descricao ,rua, numero, bairro, valoraluguel, taxaadministracao, idtipoimovel, idlocador) values ( nextVal('imovel_idimovel'),?,?,?,?,?,?,?,?)";
         try{
           stmt = conexao.prepareStatement(sql);
           
@@ -203,7 +203,12 @@ public class ImovelDAO implements GenericDAO {
             System.out.println("Problemas ao listar imóveis! Erro: " + ex.getMessage());
         } 
         return resultado;
+<<<<<<< HEAD
     }    
+=======
+       
+    }
+>>>>>>> 389659c41138f3597b6f102ff445d13ee79a4f01
     
     public String carregarJson(int numero) {
         int idImovel = numero;
@@ -234,4 +239,26 @@ public class ImovelDAO implements GenericDAO {
         return strJson;
     }
     
+    public Imovel  GetInfoImovel(int idImovel){
+        Imovel oImovel = new Imovel();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        String sql = "Select valorAluguel, TaxaAdministracao from Imovel where idImovel  = ?";
+        
+        try{
+            stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, idImovel);
+            rs = stmt.executeQuery();
+            while (rs.next()){
+                oImovel.setValorAluguel(rs.getDouble("VALORALUGUEL"));
+                oImovel.setTaxaAdministracao(rs.getDouble("TAXAADMINISTRACAO"));
+            }
+        }catch(Exception ex){
+            System.out.println("Problemas ao Carregar informacoes! Erro: " + ex.getMessage());
+                    ex.printStackTrace();
+        }
+        
+        return oImovel;
+    }
 }  

@@ -44,6 +44,10 @@ public class Imovel {
         this.locador = locador;
     }
 
+    public Imovel(int idImovel) {
+       this.idImovel = idImovel;
+    }
+
     public int getIdImovel() {
         return idImovel;
     }

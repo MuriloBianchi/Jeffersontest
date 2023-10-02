@@ -38,7 +38,7 @@ public class ImovelCadastrar extends HttpServlet {
          response.setContentType("text/html;charset=iso-8859-1");
         String mensagem = null;
         int idTipoImovel = Integer.parseInt(request.getParameter("tipoImovelC"));
-        int idLocador = Integer.parseInt(request.getParameter("locadorC"));
+        int idLocador = 1;
         try {
                 Imovel oImovel = new Imovel();
                 String id = request.getParameter("idImovelC");

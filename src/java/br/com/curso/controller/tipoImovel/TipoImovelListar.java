@@ -3,7 +3,6 @@ package br.com.curso.controller.tipoImovel;
 import br.com.curso.dao.GenericDAO;
 import br.com.curso.dao.TipoImovelDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

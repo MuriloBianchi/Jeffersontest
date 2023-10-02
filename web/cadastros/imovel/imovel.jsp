@@ -73,10 +73,10 @@
         <div class="col-md-2">
             <select class="form-control"  type="text" name="tipoImovelC" id="tipoImovelC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.tipoImovel.idTipoImovel}"
+                        <c:forEach var="tipoImovel" items="${tipoImoveis}">
+                            <option value="${tipoImovel.idTipoImovel}"
                                     ${imovel.tipoImovel.idTipoImovel == tipoImovel.idTipoImovel ? "selected" : ""}>
-                                    ${imovel.tipoImovel.descricao} 
+                                    ${tipoImovel.descricao} 
                             </option>
                         </c:forEach>
             </select>
@@ -84,10 +84,10 @@
         <div class="col-md-2">
             <select class="form-control"  type="text" name="locadorC" id="locadorC">
                 <option value="">[Nenhum]</option>
-                        <c:forEach var="imovel" items="${imoveis}">
-                            <option value="${imovel.locador.idLocador}" 
+                        <c:forEach var="locador" items="${locadores}">
+                            <option value="${iocador.idLocador}" 
                                     ${imovel.locador.idLocador == locador.idLocador ? "selected" : ""}>
-                                    ${imovel.locador.nome}
+                                    ${locador.nome}
                             </option>
                         </c:forEach>
             </select>
@@ -137,7 +137,7 @@
                     <div class="col-md-1">
                         <a align="left" id="idImovel">${imovel.idImovel}</a>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-1">
                         <a align="left" id="descricao">${imovel.descricao}</a>
                     </div>
                     <div class="col-md-1">
@@ -167,7 +167,7 @@
                         </a>
                     </div>
                     <div class="col-md-1" style="margin-left: 20px">
-                        <a href="#" id="deletar" title="Excluir" onclick="deletar(${imovel.idImovel})">
+                        <a href="${pageContext.request.contextPath}/ImovelExcluir?idImovel=${imovel.idImovel}" id="deletar" title="Excluir">
                             <button class="btn btn-group-lg btn-danger"/>Deletar</button>
                         </a>
                     </div>
@@ -188,7 +188,7 @@
                function (data){
                    console.log(data);
                    const Imovel = JSON.parse(data);
-                   console.log(Imovel.descricao);
+                   console.log(Imovel.idLocador);
                    $("#idImovelC").val(Imovel.idImovel);
                    $("#descricaoC").val(Imovel.descricao);
                    $("#ruaC").val(Imovel.rua);
@@ -201,18 +201,7 @@
                }
     }); 
    }
-   /*
-   function validarCampos(id, descricao){
-        $.ajax({
-           type: 'post',
-           url: 'TipoImovelCadastrar',
-           data:{idTipoImovel: id, descricao: descricao},
-           success:
-                   function (data){
-                       console.log("data");
-                   }
-        }); 
-   }*/
+  
 </script>
 
 <%@ include file="/footer.jsp" %>

@@ -7,7 +7,7 @@
 <form name="LocatarioCadastrar" action="LocatarioCadastrar" method="POST">
 <div class="col-md-12 fixed-top" style="height: 175px; background-color: #212529; margin-top: 50px" >
     <div class="row col-md-12" style="margin-top: 15px">
-        <label class="col-md-12" style="background-color: #212529; color: white; font-size: 16px">Casdastro de Locador</label>
+        <label class="col-md-12" style="background-color: #212529; color: white; font-size: 16px">Casdastro de Locatario</label>
     </div>
     <div class="col-md-12 row">
         <div class="col-md-4" style="color: white">
@@ -23,7 +23,7 @@
     <div class="col-md-12 row">
         <div class="col-md-4">
             <input class="form-control" type="text" name="idlocatarioC" id="idlocatarioC" 
-            value="${locatario.idLocatario}" size="100" maxlength="100">
+            value="${locatario.idLocatario}" size="100" maxlength="100"">
         </div>
         <div class="col-md-4">
             <input class="form-control" type="text" name="nomeC" id="nomeC" 

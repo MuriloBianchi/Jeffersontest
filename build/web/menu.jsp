@@ -57,7 +57,7 @@
         switch(botao.id){
             
             case "Home":
-                window.location.href = "./index.jsp";
+                window.location.href = "index.jsp";
             break;
             
             case "ContratoLocacao":
