@@ -2,10 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package br.com.curso.controller.imovel;
+package br.com.curso.controller.consulta;
 
+import br.com.curso.dao.ContratoLocacaoDAO;
 import br.com.curso.dao.GenericDAO;
-import br.com.curso.dao.ImovelDAO;
+import br.com.curso.dao.LocadorDAO;
+import br.com.curso.dao.LocatarioDAO;
+import br.com.curso.dao.ParcelaDescontoDAO;
+import br.com.curso.dao.ParcelaPagarDAO;
+import br.com.curso.dao.ParcelaReceberDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author kelvi
  */
-@WebServlet(name = "ImovelListar", urlPatterns = {"/ImovelListar"})
-public class ImovelListar extends HttpServlet {
+@WebServlet(name = "ConsultaListar", urlPatterns = {"/ConsultaListar"})
+public class ConsultaListar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,18 +37,32 @@ public class ImovelListar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("text/html;charset=iso-8859-1");
+         response.setContentType("text/html;charset=iso-8859-1");
         try {
-            GenericDAO dao = new ImovelDAO();
-            request.setAttribute("imoveis", dao.listar());
+            LocadorDAO daoLocador = new LocadorDAO();
+            request.setAttribute("locadores", daoLocador.listar());
             
-            request.getRequestDispatcher("/cadastros/imovel/imovel.jsp").forward(request, response);
+            LocatarioDAO daoLocatario = new LocatarioDAO();
+            request.setAttribute("locatarios", daoLocatario.listar());
+            
+            /*ParcelaPagarDAO daoParcelaPagar = new ParcelaPagarDAO();
+            request.setAttribute("pacelaspagar", daoParcelaPagar.listar());
+            
+            ParcelaReceberDAO daoParcelaReceber = new ParcelaReceberDAO();
+            request.setAttribute("parcelasreceber", daoParcelaReceber.listar());
+                        
+            ParcelaDescontoDAO daoParcelaDesconto = new ParcelaDescontoDAO();
+            request.setAttribute("parcelasdesconto", daoParcelaDesconto.listar());*/
+            
+            GenericDAO dao = new ContratoLocacaoDAO();
+            request.setAttribute("contratos", dao.listar());
+            
+            request.getRequestDispatcher("/cadastros/consultaContrato/consultaContrato.jsp").forward(request, response);
         }catch (Exception ex){
-            System.out.println("Problemas no Servelet ao Listar imovel!Erro: "+ ex.getMessage());
+            System.out.println("Problemas no Servelet ao Listar consultas!Erro: "+ ex.getMessage());
             ex.printStackTrace();
         }
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

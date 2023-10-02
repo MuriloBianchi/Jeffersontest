@@ -37,6 +37,10 @@
             <a class="nav-link" href="#" id="Imovel" onclick="Listar(this)"
             style="--color: #1e9bff"><span>Imóvel</span><i></i></a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" id="Consulta" onclick="Listar(this)"
+            style="--color: #1e9bff"><span>Consulta</span><i></i></a>
+          </li>
           <%--
           <div class="container">
             <a href="#" style="--color: #1e9bff"><span>Telegarm </span><i></i></a>
@@ -80,6 +84,9 @@
                 window.location.href = "ImovelListar";
             break;
             
+            case "Consulta":
+                window.location.href = "ConsultaListar";
+            break;
             default:
                 window.alert("Erro no Link");
         };

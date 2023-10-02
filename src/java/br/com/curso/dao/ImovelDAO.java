@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class ImovelDAO implements GenericDAO {
     
-       private Connection conexao;
+    private Connection conexao;
     
     public ImovelDAO() throws Exception {
         conexao = SingleConnection.getConnection();
@@ -203,8 +203,8 @@ public class ImovelDAO implements GenericDAO {
             System.out.println("Problemas ao listar imóveis! Erro: " + ex.getMessage());
         } 
         return resultado;
-       
     }    
+    
     public String carregarJson(int numero) {
         int idImovel = numero;
         PreparedStatement stmt = null;

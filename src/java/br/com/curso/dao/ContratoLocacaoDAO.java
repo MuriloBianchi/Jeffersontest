@@ -202,12 +202,12 @@ public class ContratoLocacaoDAO implements GenericDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Object> resultado = new ArrayList<>();
-        ContratoLocacao oContratoLocacao = null;
         String sql = "Select * from CONTRATOLOCACAO";
         try{
             stmt = conexao.prepareCall(sql);
-             rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             while(rs.next()){
+                ContratoLocacao oContratoLocacao = new ContratoLocacao();
                 oContratoLocacao.setIdContrato(rs.getInt("IDCONTRATO"));
                 oContratoLocacao.setDataContrato(rs.getDate("DATACONTRATO"));
                 oContratoLocacao.setDataInicio(rs.getDate("DATAINICIO"));
